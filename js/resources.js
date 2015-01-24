@@ -4,8 +4,9 @@ game.resources = [
 	 * @example
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
-	{name: "background", type:"image", src: "data/img/background.png"}, //resource tiles
-	{name: "meta-tiles2", type:"image", src: "data/img/meta-tiles2.png"}, //resource meta tiles?
+	{name: "background-tiles", type:"image", src: "data/img/background-tiles.png"}, //resource tiles
+	{name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"}, //resource meta tiles?
+	{name: "player1", type:"image", src: "data/img/orcSpear.png"},
 
 	/* Atlases 
 	 * @example
@@ -17,8 +18,7 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
- 	//{name: "map1", type: "tmx", src: "data/map/map1.tmx"}, //resource first map
- 	{name: "test", type: "tmx", src: "data/map/testmap.tmx"}, //another test map
+ 	{name: "level1", type: "tmx", src: "data/map/level1.tmx"}, //test map
 
 	/* Background music. 
 	 * @example
