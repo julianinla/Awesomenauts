@@ -12,18 +12,23 @@ game.PlayerEntity = me.Entity.extend({
 		}]);
 
 		this.body.setVelocity(5, 0);
+		//tells movement of player when moved
 	},
 
 	update: function(delta) {
 		if(me.input.isKeyPressed("right")) {
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			//current postion changes by setVelocity() 
+			//me.timer.tick keeps movement smooth
 		}
 		else {
 			this.body.vel.x = 0;
+			//if not pressing, no change in velocity
 		}
 
 		this.body.update(delta);
 		return true;
+		//lets game know to update screen
 	}
 });
 //create player entity for use in game
