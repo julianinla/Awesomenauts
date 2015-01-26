@@ -11,7 +11,7 @@ game.PlayerEntity = me.Entity.extend({
 			} //creating shape based on selection in image
 		}]);
 
-		this.body.setVelocity(5, 0);
+		this.body.setVelocity(5, 20);
 		//tells movement of player when moved
 	},
 
