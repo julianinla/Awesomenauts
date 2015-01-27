@@ -32,6 +32,7 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
 			//current postion changes by setVelocity() 
 			//me.timer.tick keeps movement smooth
+			this.flipX(false);
 		}
 		else {
 			this.body.vel.x = 0;
