@@ -13,6 +13,7 @@ game.PlayerEntity = me.Entity.extend({
 
 		this.body.setVelocity(5, 20);
 		//tells movement of player when moved
+		//changed position 0 to 20
 	},
 
 	update: function(delta) {
