@@ -62,8 +62,50 @@ game.PlayerEntity = me.Entity.extend({
 
 		this._super(me.Entity, "update", [delta]);
 		//updates in real time
-		
+
 		return true;
 	}
 });
 //create player entity for use in game
+
+game.PlayerBaseEntity = me.Entity.extend({
+	init: function(x, y, settings) {
+		this._super(me.Entity, 'init', [x, y, {
+			image: "tower", //img for entity
+			width: 100, //width of base
+			height: 100, //height of base 
+			spritewidth: "100", //similar to width
+			spriteheight: "100", //similar to height
+			getShape: function() {
+				return (new me.Rect(0, 0, 100, 100)).toPolygon();
+			}
+			//getShape function for use
+		}]); 
+		//build constructor by calling super
+
+		this.broken = false; //tower not destroyed
+		this.health = 10; //health of the tower
+		this.alwaysUpdate = true; //update if not on screen 
+		this.body.onCollision = this.onCollision.bind(this); //able to collide w/ tower
+
+		this.type = "PlayerBaseEntity"; //later for other collisions
+	}, 
+	//init function for initialize
+
+	update: function(delta) {
+		if(this.health <= 0) {
+			this.broken = true;
+		}
+		//if health <= 0 then tower broken 
+		this.body.update(delta); //update for this
+
+		this._super(me.Entity, "update", [delta]); //have to call super
+		return true;
+	},
+	//update function to update
+
+	onCollision: function() {
+		//empty onCollision function for later
+	}
+}); 
+//base entity similar to player
