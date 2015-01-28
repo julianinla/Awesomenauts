@@ -89,12 +89,17 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.body.onCollision = this.onCollision.bind(this); //able to collide w/ tower
 
 		this.type = "PlayerBaseEntity"; //later for other collisions
+
+		this.renderable.addAnimation("idle", [0]);
+		this.renderable.addAnimation("broken", [1]);
+		this.renderable.setCurrentAnimation("idle");
 	}, 
 	//init function for initialize
 
 	update: function(delta) {
 		if(this.health <= 0) {
 			this.broken = true;
+			this.renderable.setCurrentAnimation("broken");
 		}
 		//if health <= 0 then tower broken 
 		this.body.update(delta); //update for this
@@ -131,12 +136,17 @@ game.EnemyBaseEntity = me.Entity.extend({
 		this.body.onCollision = this.onCollision.bind(this); //able to collide w/ tower
 
 		this.type = "EnemyBaseEntity"; //later for other collisions
+
+		this.renderable.addAnimation("idle", [0]);
+		this.renderable.addAnimation("broken", [1]);
+		this.renderable.setCurrentAnimation("idle");
 	}, 
 	//init function for initialize
 
 	update: function(delta) {
 		if(this.health <= 0) {
 			this.broken = true;
+			this.renderable.setCurrentAnimation("broken");
 		}
 		//if health <= 0 then tower broken 
 		this.body.update(delta); //update for this
