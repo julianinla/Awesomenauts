@@ -91,15 +91,19 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.type = "PlayerBaseEntity"; //later for other collisions
 
 		this.renderable.addAnimation("idle", [0]);
+		//add animation for unbroken tower
 		this.renderable.addAnimation("broken", [1]);
+		//add animation for broken tower
 		this.renderable.setCurrentAnimation("idle");
+		//sets the current animation to idle
 	}, 
 	//init function for initialize
 
 	update: function(delta) {
 		if(this.health <= 0) {
-			this.broken = true;
+			this.broken = true; //breaks the tower
 			this.renderable.setCurrentAnimation("broken");
+			//sets the current animation to broken
 		}
 		//if health <= 0 then tower broken 
 		this.body.update(delta); //update for this
@@ -138,15 +142,19 @@ game.EnemyBaseEntity = me.Entity.extend({
 		this.type = "EnemyBaseEntity"; //later for other collisions
 
 		this.renderable.addAnimation("idle", [0]);
+		//add animation for unbroken tower
 		this.renderable.addAnimation("broken", [1]);
+		//add animation for broken tower
 		this.renderable.setCurrentAnimation("idle");
+		//sets the current animation to idle
 	}, 
 	//init function for initialize
 
 	update: function(delta) {
 		if(this.health <= 0) {
-			this.broken = true;
+			this.broken = true; //breaks the tower
 			this.renderable.setCurrentAnimation("broken");
+			//sets the current animation to broken
 		}
 		//if health <= 0 then tower broken 
 		this.body.update(delta); //update for this
