@@ -15,7 +15,9 @@ game.PlayerEntity = me.Entity.extend({
 		//tells movement of player when moved
 		//changed position 0 to 20
 
-		this.renderable.addAnimation("idle", [78]);
+		this.facing = "right";
+
+		this.renderable.addAnimation("idle", [65]);
 		//setting an idle image
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
 		//creating a walk animation using orcSpear img
@@ -33,6 +35,7 @@ game.PlayerEntity = me.Entity.extend({
 			//me.timer.tick keeps movement smooth
 			this.flipX(true);
 			//flips the animation for right movement
+			this.facing = "right";
 		}
 		else if(me.input.isKeyPressed("left")) {
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
@@ -40,14 +43,15 @@ game.PlayerEntity = me.Entity.extend({
 			//me.timer.tick keeps movement smooth
 			this.flipX(false);
 			//stops animation from flipping to right when moving left
+			this.facing = "left";
 		}
 		else {
 			this.body.vel.x = 0;
 			//if not pressing, no change in velocity
 		}
 
-		if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
-			this.jumping = true;
+		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling) {
+			this.body.jumping = true;
 			//sets precreated jumping var to true
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 			//causes jump to actually happen
@@ -79,6 +83,7 @@ game.PlayerEntity = me.Entity.extend({
 			//makes sure to switch back to idle animation
 		}
 
+		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		this.body.update(delta);
 		//lets game know to update screen
 
@@ -86,6 +91,22 @@ game.PlayerEntity = me.Entity.extend({
 		//updates in real time
 
 		return true;
+	},
+
+	collideHandler : function(response) {
+		if(response.b.type === 'EnemyBaseEntity') {
+			var ydif = this.pos.y - response.b.pos.y;
+			var xdif = this.pos.x - response.b.pos.x;
+
+			if(xdif > -35 && this.facing === 'right' && (xdif < 0)) {
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x - 1;
+			}
+			else if(xdif < 70 && this.facing === 'left' && xdif > 0) {
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x + 1;
+			}
+		}
 	}
 });
 //create player entity for use in game
