@@ -19,6 +19,8 @@ game.PlayerEntity = me.Entity.extend({
 		//setting an idle image
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
 		//creating a walk animation using orcSpear img
+		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72, 71], 80);
+		//creating an animationg for attacking
 
 		this.renderable.setCurrentAnimation("idle");
 		//sets current animation to the idle
@@ -44,7 +46,27 @@ game.PlayerEntity = me.Entity.extend({
 			//if not pressing, no change in velocity
 		}
 
-		if(this.body.vel.x !== 0){
+		if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling) {
+			this.jumping = true;
+			//sets precreated jumping var to true
+			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+			//causes jump to actually happen
+		}
+		//allows for jumping when key is pressed, 
+		//and if not jumping/falling already
+
+		if(me.input.isKeyPressed("attack")) {
+			if(!this.renderable.isCurrentAnimation("attack")) {
+				this.renderable.setCurrentAnimation("attack", "idle");
+				//sets current animation then switches over
+				this.renderable.setAnimationFrame();
+				//begins animation from beginning not 
+				//from left off
+			}
+			//uses animation if not already in use
+		}
+		//shows action on attacking
+		else if(this.body.vel.x !== 0){
 			if(!this.renderable.isCurrentAnimation("walk")) {
 				this.renderable.setCurrentAnimation("walk");
 				//makes walk animation occur when moving
@@ -77,7 +99,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 			spritewidth: "100", //similar to width
 			spriteheight: "100", //similar to height
 			getShape: function() {
-				return (new me.Rect(0, 0, 100, 100)).toPolygon();
+				return (new me.Rect(0, 0, 100, 70)).toPolygon();
 			}
 			//getShape function for use
 		}]); 
@@ -128,7 +150,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 			spritewidth: "100", //similar to width
 			spriteheight: "100", //similar to height
 			getShape: function() {
-				return (new me.Rect(0, 0, 100, 100)).toPolygon();
+				return (new me.Rect(0, 0, 100, 70)).toPolygon();
 			}
 			//getShape function for use
 		}]); 
