@@ -18,6 +18,16 @@ game.PlayerEntity = me.Entity.extend({
 		this.facing = "right";
 		//keeps track of which direction player facing
 
+		this.now = new Date().getTime();
+		//sets variable to current date/time
+		this.lastHit = this.now;
+		//finds the date when your last hit player 
+		this.lastAttack = new Date();
+		//havent used this yet
+
+		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+		//makes screen follow player movement
+
 		this.renderable.addAnimation("idle", [65]);
 		//setting an idle image
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
@@ -30,6 +40,8 @@ game.PlayerEntity = me.Entity.extend({
 	},
 
 	update: function(delta) {
+		this.now = new Date().getTime();
+
 		if(me.input.isKeyPressed("right")) {
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
 			//current postion changes by setVelocity() 
@@ -73,7 +85,7 @@ game.PlayerEntity = me.Entity.extend({
 			//uses animation if not already in use
 		}
 		//shows action on attacking
-		else if(this.body.vel.x !== 0){
+		else if(this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")){
 			if(!this.renderable.isCurrentAnimation("walk")) {
 				this.renderable.setCurrentAnimation("walk");
 				//makes walk animation occur when moving
@@ -81,7 +93,7 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		} 
 		//adds if statement for movement
-		else {
+		else if(!this.renderable.isCurrentAnimation("attack")) {
 			this.renderable.setCurrentAnimation("idle");
 			//makes sure to switch back to idle animation
 		}
@@ -129,6 +141,11 @@ game.PlayerEntity = me.Entity.extend({
 		}
 		//sees if player is colliding w/ enemy base
 		//if so...
+
+		if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 1000) {
+			this.lastHit = this.now;
+			response.b.loseHealth();
+		}
 	}
 	//collideHandler function creates collsision for player w/ objects
 });
@@ -232,6 +249,10 @@ game.EnemyBaseEntity = me.Entity.extend({
 
 	onCollision: function() {
 		//empty onCollision function for later
+	},
+
+	loseHealth: function() {
+		this.health--;
 	}
 }); 
 //base entity similar to player
