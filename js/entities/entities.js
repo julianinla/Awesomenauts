@@ -103,9 +103,16 @@ game.PlayerEntity = me.Entity.extend({
 			var xdif = this.pos.x - response.b.pos.x;
 			//represnets difference between players x position and bases
 
-			if(xdif > -35 /* xdif relation to found number */ && 
+			if(ydif < -40 && xdif < 70 && xdif > -35) /* only checking if necaessary */ {
+				this.body.falling = false;
+				//stops player from fallng into base
+				this.body.vel.y = - 1;
+				//pushes player up from top
+			}
+			//need to check ydif first
+			else if(xdif > -35 /* xdif relation to found number */ && 
 			this.facing === 'right'  /* need to know which way facing */ && 
-			xdif < 0) {
+			(xdif < 0)) {
 				this.body.vel.x = 0;
 				//stop player from moving
 				this.pos.x = this.pos.x - 1;
