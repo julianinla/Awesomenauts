@@ -16,6 +16,7 @@ game.PlayerEntity = me.Entity.extend({
 		//changed position 0 to 20
 
 		this.facing = "right";
+		//keeps track of which direction player facing
 
 		this.renderable.addAnimation("idle", [65]);
 		//setting an idle image
@@ -36,6 +37,7 @@ game.PlayerEntity = me.Entity.extend({
 			this.flipX(true);
 			//flips the animation for right movement
 			this.facing = "right";
+			//says youre facing right
 		}
 		else if(me.input.isKeyPressed("left")) {
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
@@ -44,6 +46,7 @@ game.PlayerEntity = me.Entity.extend({
 			this.flipX(false);
 			//stops animation from flipping to right when moving left
 			this.facing = "left";
+			//says youre facing left
 		}
 		else {
 			this.body.vel.x = 0;
@@ -96,18 +99,31 @@ game.PlayerEntity = me.Entity.extend({
 	collideHandler : function(response) {
 		if(response.b.type === 'EnemyBaseEntity') {
 			var ydif = this.pos.y - response.b.pos.y;
+			//represnets difference between players y position and bases
 			var xdif = this.pos.x - response.b.pos.x;
+			//represnets difference between players x position and bases
 
-			if(xdif > -35 && this.facing === 'right' && (xdif < 0)) {
+			if(xdif > -35 /* xdif relation to found number */ && 
+			this.facing === 'right'  /* need to know which way facing */ && 
+			xdif < 0) {
 				this.body.vel.x = 0;
+				//stop player from moving
 				this.pos.x = this.pos.x - 1;
+				//slightly move player backwards
 			}
-			else if(xdif < 70 && this.facing === 'left' && xdif > 0) {
+			else if(xdif < 70 /* xdif relation to found number */ && 
+			this.facing === 'left' /* need to know which way facing */ && 
+			xdif > 0) {
 				this.body.vel.x = 0;
+				//stop player movement
 				this.pos.x = this.pos.x + 1;
+				//move player away slightly
 			}
 		}
+		//sees if player is colliding w/ enemy base
+		//if so...
 	}
+	//collideHandler function creates collsision for player w/ objects
 });
 //create player entity for use in game
 
