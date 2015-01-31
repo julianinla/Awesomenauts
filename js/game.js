@@ -45,6 +45,8 @@ var game = {
 		//loading the PlayerBase entity in game.js
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 		//loading the EnemyBase entity
+		me.pool.register("EnemyCreep", game.EnemyCreep, true);
+		//loading the EnemyCreep entity
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
