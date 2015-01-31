@@ -260,28 +260,37 @@ game.EnemyBaseEntity = me.Entity.extend({
 game.EnemyCreep = me.Entity.extend({
 	init : function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, y, {
-			image: "creep1",
-			width: 32,
-			height: 64,
-			spritewidth: "32",
-			spriteheight: "64",
+			image: "creep1", //gives enemy image to creep1
+			width: 32, //sets width to 32
+			height: 64, //sets height to 64
+			spritewidth: "32", //same as width
+			spriteheight: "64", //same as height
 			getShape: function() {
 				return (new me.Rect(0, 0, 32, 64)).toPolygon();
 			}
+			//getShape function creates rectangle for enemy
 		}]);
 
 		this.health = 2;
+		//sets health to 2
 		this.alwaysUpdate = true;
+		//makes always update
 
 		this.setVelocity(3, 20);
+		//sets the movement velocity of EnemyCreep
 
-		this.type="EnemyCreep";
+		this.type = "EnemyCreep";
+		//gives entity a type
 
 		this.renderable.addAnimation("walk", [3, 4, 5], 80);
+		//creates a walk animation
 		this.renderable.setCurrentAnimation("walk");
+		//sets the current animation to walk
 	},
 
 	update : function() {
-
+		//empty update function
 	},
+
 });
+//EnemyCreep entity to create enemy 
