@@ -298,20 +298,31 @@ game.EnemyCreep = me.Entity.extend({
 game.GameManager = Object.extend({
 	init : function(x, y, settings) {
 		this.now = new Date().getTime();
+		//makes now the current date/time
 		this.lastCreep = new Date().getTime();
+		//makes lastCreep equal to the current date/time
 
 		this.alwaysUpdate = true;
+		//makes it always update
 	},
+	//initialization function for gamemanager
 
 	update: function() {
 		this.now = new Date().getTime();
+		//gets now var
 
 		if(Math.round(this.now/1000) % 10 === 0 && (this.now - this.lastCreep >= 1000)) {
 			this.lastCreep = this.now;
+			//resets time
 			var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
+			//pulls enemy creep class from pool
 			me.game.world.addChild(creepe, 5);
+			//inserts creep into actual game
 		}
+		//does something if 10 sec since last
 
 		return true;
+		//always for update functions
 	},
 });
+//handles things like timers, not entities

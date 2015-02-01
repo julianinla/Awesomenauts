@@ -14,7 +14,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		//adding into "world"
 
 		var gamemanager = me.pool.pull("GameManager", 0, 0, {});
+		//incorporates GameManager into play.js
 		me.game.world.addChild(gamemanager, 0);
+		//adds it into actual game
 
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		//binding right to be able to perform action
