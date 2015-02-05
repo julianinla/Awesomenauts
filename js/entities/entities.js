@@ -198,6 +198,10 @@ game.PlayerBaseEntity = me.Entity.extend({
 
 	onCollision: function() {
 		//empty onCollision function for later
+	},
+
+	loseHealth: function() {
+		
 	}
 }); 
 //base entity similar to player
@@ -288,9 +292,18 @@ game.EnemyCreep = me.Entity.extend({
 		//sets the current animation to walk
 	},
 
-	update : function() {
-		//empty update function
+	update : function(delta) {
+		this.body.vel.x -= this.body.accel.x * me.timer.tick;
+
+		this.body.update(delta);
+
+		this._super(me.Entity, "update", [delta]);
+		return true;
 	},
+
+	loseHealth: function() {
+
+	}
 
 });
 //EnemyCreep entity to create enemy 
