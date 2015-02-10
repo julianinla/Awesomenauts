@@ -171,7 +171,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.health = 10; //health of the tower
 		this.alwaysUpdate = true; //update if not on screen 
 		this.body.onCollision = this.onCollision.bind(this); //able to collide w/ tower
-		this.type = "PlayerBase";
+		this.type = "PlayerBase"; //sets type to Player Base
 
 		this.renderable.addAnimation("idle", [0]);
 		//add animation for unbroken tower
@@ -281,9 +281,12 @@ game.EnemyCreep = me.Entity.extend({
 		//makes always update
 
 		this.attacking = false;
+		//sets variable attacking to false
+
 		this.lastAttacking = new Date().getTime();
 		this.lastHit = new Date().getTime();
 		this.now = new Date().getTime();
+		//all for spacing out time in update function
 
 		this.body.setVelocity(3, 20);
 		//sets the movement velocity of EnemyCreep
@@ -299,11 +302,13 @@ game.EnemyCreep = me.Entity.extend({
 
 	update : function(delta) {
 		this.now = new Date().getTime();
+		//sets now to a current time
 
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
 		//causes creep to move
 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
+		//allows for creep collisions
 
 		this.body.update(delta);
 		//update makes this happen in real time
@@ -319,12 +324,18 @@ game.EnemyCreep = me.Entity.extend({
 			this.attacking = true;
 			this.lastAttacking = this.now;
 			this.body.vel.x = 0;
-			this.pos.x = this.pos.x + 1;
+			//stops movement
+			this.pos.x = this.pos.x + 1; 
+			//keeps moving creep to right to maintain its position
 			if(this.now - this.lastHit >= 1000) {
 				this.lastHit = this.now;
+				//reset?
 				response.b.loseHealth(1);
+				//calls loseHealth function with one damage
 			}
+			//times out the hits
 		}
+		//if the creep hits player base
 	},
 
 	loseHealth: function() {
