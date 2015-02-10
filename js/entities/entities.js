@@ -132,7 +132,7 @@ game.PlayerEntity = me.Entity.extend({
 			}
 			else if(xdif < 70 /* xdif relation to found number */ && 
 			this.facing === 'left' /* need to know which way facing */ && 
-			xdif > 0) {
+			(xdif > 0)) {
 				this.body.vel.x = 0;
 				//stop player movement
 				this.pos.x = this.pos.x + 1;
@@ -300,6 +300,49 @@ game.EnemyCreep = me.Entity.extend({
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
+
+	collideHandler : function(response) {
+		if(response.b.type === 'PlayerBaseEntity') {
+			var ydif = this.pos.y - response.b.pos.y;
+			//represnets difference between players y position and bases
+			var xdif = this.pos.x - response.b.pos.x;
+			//represnets difference between players x position and bases
+
+			// console.log("xdif " + xdif + " ydif " + ydif);
+
+			if(ydif < -40 && xdif < 70 && xdif > -35) /* only checking if necaessary */ {
+				this.body.falling = false;
+				//stops player from fallng into base
+				this.body.vel.y = - 1;
+				//pushes player up from top
+			}
+			//need to check ydif first
+			else if(xdif > -35 /* xdif relation to found number */ && 
+			this.facing === 'right'  /* need to know which way facing */ && 
+			(xdif < 0)) {
+				this.body.vel.x = 0;
+				//stop player from moving
+				this.pos.x = this.pos.x - 1;
+				//slightly move player backwards
+			}
+			else if(xdif < 70 /* xdif relation to found number */ && 
+			this.facing === 'left' /* need to know which way facing */ && 
+			xdif > 0) {
+				this.body.vel.x = 0;
+				//stop player movement
+				this.pos.x = this.pos.x + 1;
+				//move player away slightly
+			}
+		}
+		//sees if player is colliding w/ enemy base
+		//if so...
+
+		if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 1000) {
+			this.lastHit = this.now;
+			response.b.loseHealth();
+		}
+	},
+	//collideHandler function creates collsision for player w/ objects
 
 	loseHealth: function() {
 
