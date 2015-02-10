@@ -11,6 +11,9 @@ game.PlayerEntity = me.Entity.extend({
 			} //creating shape based on selection in image
 		}]);
 
+		this.type = "PlayerEntity";
+		this.health = 100;
+
 		this.body.setVelocity(5, 20);
 		//tells movement of player when moved
 		//changed position 0 to 20
@@ -147,8 +150,12 @@ game.PlayerEntity = me.Entity.extend({
 			this.lastHit = this.now;
 			response.b.loseHealth();
 		}
-	}
+	},
 	//collideHandler function creates collsision for player w/ objects
+
+	loseHealth : function(damage) {
+		this.health = this.health - damage;
+	}
 });
 //create player entity for use in game
 
@@ -334,8 +341,30 @@ game.EnemyCreep = me.Entity.extend({
 				//calls loseHealth function with one damage
 			}
 			//times out the hits
+		} //if the creep hits player base
+		else if (response.b.type === 'PlayerEntity') {
+			var xdif = this.pos.x - response.b.pos.x;
+
+			this.attacking = true;
+			this.lastAttacking = this.now;
+			this.body.vel.x = 0;
+			//stops movement
+
+			if(xdif > 0) {
+				console.log(xdif);
+				this.pos.x = this.pos.x + 1; 
+				//keeps moving creep to right to maintain its position
+				this.body.vel.x = 0;
+			}	
+
+			if((this.now - this.lastHit >= 1000) && xdif > 0) {
+				this.lastHit = this.now;
+				//reset?
+				response.b.loseHealth(1);
+				//calls loseHealth function with one damage
+			}
+			//times out the hits
 		}
-		//if the creep hits player base
 	},
 
 	loseHealth: function() {
