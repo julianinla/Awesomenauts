@@ -99,6 +99,7 @@ game.PlayerEntity = me.Entity.extend({
 		}
 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
+		//handles player collisions
 		this.body.update(delta);
 		//lets game know to update screen
 
@@ -170,8 +171,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.health = 10; //health of the tower
 		this.alwaysUpdate = true; //update if not on screen 
 		this.body.onCollision = this.onCollision.bind(this); //able to collide w/ tower
-
-		this.type = "PlayerBaseEntity"; //later for other collisions
+		this.type = "PlayerBase";
 
 		this.renderable.addAnimation("idle", [0]);
 		//add animation for unbroken tower
@@ -200,8 +200,8 @@ game.PlayerBaseEntity = me.Entity.extend({
 		//empty onCollision function for later
 	},
 
-	loseHealth: function() {
-		
+	loseHealth: function(damage) {
+		this.health = this.health - damage;
 	}
 }); 
 //base entity similar to player
@@ -280,6 +280,11 @@ game.EnemyCreep = me.Entity.extend({
 		this.alwaysUpdate = true;
 		//makes always update
 
+		this.attacking = false;
+		this.lastAttacking = new Date().getTime();
+		this.lastHit = new Date().getTime();
+		this.now = new Date().getTime();
+
 		this.body.setVelocity(3, 20);
 		//sets the movement velocity of EnemyCreep
 
@@ -293,56 +298,34 @@ game.EnemyCreep = me.Entity.extend({
 	},
 
 	update : function(delta) {
+		this.now = new Date().getTime();
+
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
+		//causes creep to move
+
+		me.collision.check(this, true, this.collideHandler.bind(this), true);
 
 		this.body.update(delta);
+		//update makes this happen in real time
 
 		this._super(me.Entity, "update", [delta]);
+		//updates the entity
 		return true;
+		//required
 	},
 
-	collideHandler : function(response) {
-		if(response.b.type === 'PlayerBaseEntity') {
-			var ydif = this.pos.y - response.b.pos.y;
-			//represnets difference between players y position and bases
-			var xdif = this.pos.x - response.b.pos.x;
-			//represnets difference between players x position and bases
-
-			// console.log("xdif " + xdif + " ydif " + ydif);
-
-			if(ydif < -40 && xdif < 70 && xdif > -35) /* only checking if necaessary */ {
-				this.body.falling = false;
-				//stops player from fallng into base
-				this.body.vel.y = - 1;
-				//pushes player up from top
+	collideHandler: function(response) {
+		if(response.b.type === 'PlayerBase') {
+			this.attacking = true;
+			this.lastAttacking = this.now;
+			this.body.vel.x = 0;
+			this.pos.x = this.pos.x + 1;
+			if(this.now - this.lastHit >= 1000) {
+				this.lastHit = this.now;
+				response.b.loseHealth(1);
 			}
-			//need to check ydif first
-			else if(xdif > -35 /* xdif relation to found number */ && 
-			this.facing === 'right'  /* need to know which way facing */ && 
-			(xdif < 0)) {
-				this.body.vel.x = 0;
-				//stop player from moving
-				this.pos.x = this.pos.x - 1;
-				//slightly move player backwards
-			}
-			else if(xdif < 70 /* xdif relation to found number */ && 
-			this.facing === 'left' /* need to know which way facing */ && 
-			xdif > 0) {
-				this.body.vel.x = 0;
-				//stop player movement
-				this.pos.x = this.pos.x + 1;
-				//move player away slightly
-			}
-		}
-		//sees if player is colliding w/ enemy base
-		//if so...
-
-		if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 1000) {
-			this.lastHit = this.now;
-			response.b.loseHealth();
 		}
 	},
-	//collideHandler function creates collsision for player w/ objects
 
 	loseHealth: function() {
 
