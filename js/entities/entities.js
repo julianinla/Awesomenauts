@@ -12,7 +12,9 @@ game.PlayerEntity = me.Entity.extend({
 		}]);
 
 		this.type = "PlayerEntity";
+		//gives player entity a type 
 		this.health = 100;
+		//sets health of player to 2
 
 		this.body.setVelocity(5, 20);
 		//tells movement of player when moved
@@ -344,9 +346,12 @@ game.EnemyCreep = me.Entity.extend({
 		} //if the creep hits player base
 		else if (response.b.type === 'PlayerEntity') {
 			var xdif = this.pos.x - response.b.pos.x;
+			//creates var that is based on position of creep
 
 			this.attacking = true;
+			//makes attacking at this moment
 			this.lastAttacking = this.now;
+			//makes last attack at this moment
 			this.body.vel.x = 0;
 			//stops movement
 
@@ -355,6 +360,7 @@ game.EnemyCreep = me.Entity.extend({
 				this.pos.x = this.pos.x + 1; 
 				//keeps moving creep to right to maintain its position
 				this.body.vel.x = 0;
+				//stops movement
 			}	
 
 			if((this.now - this.lastHit >= 1000) && xdif > 0) {
