@@ -47,6 +47,7 @@ var game = {
 		//loading the EnemyBase entity
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
 		//loading the EnemyCreep entity
+		me.pool.register("JumpTrigger", game.JumpTrigger);
 		me.pool.register("GameManager", game.GameManager);
 		//GameManager for things like timers, added to pool
 
