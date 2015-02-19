@@ -144,14 +144,43 @@ game.PlayerEntity = me.Entity.extend({
 				this.pos.x = this.pos.x + 1;
 				//move player away slightly
 			}
+
+
+			if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 1000) {
+				this.lastHit = this.now;
+				response.b.loseHealth();
+			}
 		}
 		//sees if player is colliding w/ enemy base
 		//if so...
+		else if (response.b.type === 'EnemyCreep')  {
+			var xdif = this.pos.x - response.b.pos.x; //sets xdif to x position
+			var ydif = this.pos.y - response.b.pos.y; //sets ydif to y position
 
-		if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 1000) {
-			this.lastHit = this.now;
-			response.b.loseHealth();
+			if(xdif > 0) {
+				this.pos.x = this.pos.x + 1;
+				if (this.facing === "left") {
+					this.body.vel.x = 0;
+				}
+				//prevents left movement with creep
+			}
+			else {
+				this.pos.x = this.pos.x - 1;
+				if (this.facing === "right") {
+					this.body.vel.x = 0;
+				}
+				//prevents right movement with creep
+			}
+
+			if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 1000 
+				&& (Math.abs(ydif) <= 40) && 
+				(((xdif > 0) && this.facing === "left") || ((xdif < 0) && this.facing === "right"))) {
+				this.health = this.now; //makes current health health
+				response.b.loseHealth(1); //lose 1 health
+			}
+			//function activates attack based on ...
 		}
+		//if player collides with creep
 	},
 	//collideHandler function creates collsision for player w/ objects
 
@@ -284,7 +313,7 @@ game.EnemyCreep = me.Entity.extend({
 			//getShape function creates rectangle for enemy
 		}]);
 
-		this.health = 2;
+		this.health = 10;
 		//sets health to 2
 		this.alwaysUpdate = true;
 		//makes always update
@@ -311,7 +340,18 @@ game.EnemyCreep = me.Entity.extend({
 		//sets the current animation to walk
 	},
 
+
+	loseHealth: function(damage) {
+		this.health = this.health - damage;
+		//losehealth function to take damage
+	},
+
+
 	update : function(delta) {
+		if(this.health <= 0) {
+			me.game.world.removeChild(this);
+		}
+
 		this.now = new Date().getTime();
 		//sets now to a current time
 
@@ -382,11 +422,6 @@ game.EnemyCreep = me.Entity.extend({
 			}
 		}	
 	},
-
-	loseHealth: function() {
-
-	}
-
 });
 //EnemyCreep entity to create enemy 
 
