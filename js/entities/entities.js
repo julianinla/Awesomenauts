@@ -48,6 +48,12 @@ game.PlayerEntity = me.Entity.extend({
 	update: function(delta) {
 		this.now = new Date().getTime();
 
+		if(this.health <= 0) {
+			this.dead = true;
+			//the player is "dead"
+		}
+		//if players health hits 0
+
 		if(me.input.isKeyPressed("right")) {
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
 			//current postion changes by setVelocity() 
@@ -446,9 +452,10 @@ game.JumpTrigger = me.Entity.extend({
 			//getShape function creates rectangle for enemy
 		}]);
 
-		console.log("hello");
+		// console.log("hello");
 
 		this.type = "JumpTrigger";
+		//sets type to jumptrigger
 
 		this.alwaysUpdate = true; //update if not on screen 
 		// this.body.onCollision = this.onCollision.bind(this);
@@ -477,6 +484,12 @@ game.GameManager = Object.extend({
 	update: function() {
 		this.now = new Date().getTime();
 		//gets now var
+
+		if(game.data.player.dead) {
+			me.game.world.removeChild(game.data.player); //remove dead player body
+			me.state.current().resetPlayer(10, 0); //respawn the player 
+		}
+		//if the player is dead
 
 		if(Math.round(this.now/game.data.creepAttackTimer) % 10 === 0 && 
 			(this.now - this.lastCreep >= game.data.creepAttackTimer)) {
