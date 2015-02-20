@@ -15,6 +15,7 @@ game.PlayerEntity = me.Entity.extend({
 		//gives player entity a type 
 		this.health = game.data.playerHealth;
 		//sets health of player to 2
+		//used global var
 
 		this.body.setVelocity(game.data.playerMoveSpeed, 20);
 		//tells movement of player when moved
@@ -146,10 +147,14 @@ game.PlayerEntity = me.Entity.extend({
 			}
 
 
-			if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer) {
+			if(this.renderable.isCurrentAnimation("attack") && 
+				this.now - this.lastHit >= game.data.playerAttackTimer /* uses timing global var */ ) {
 				this.lastHit = this.now;
 				response.b.loseHealth(game.data.playerAttack);
+				//causes to remove health
+				//uses global var
 			}
+			//attack on collision
 		}
 		//sees if player is colliding w/ enemy base
 		//if so...
@@ -172,11 +177,13 @@ game.PlayerEntity = me.Entity.extend({
 				//prevents right movement with creep
 			}
 
-			if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer 
+			if(this.renderable.isCurrentAnimation("attack") &&
+				this.now - this.lastHit >= game.data.playerAttackTimer /* uses global var */ 
 				&& (Math.abs(ydif) <= 40) && 
 				(((xdif > 0) && this.facing === "left") || ((xdif < 0) && this.facing === "right"))) {
 				this.health = this.now; //makes current health health
-				response.b.loseHealth(game.data.playerAttack); //lose 1 health
+				response.b.loseHealth(game.data.playerAttack); //used global var
+				//lose 1 health from this
 			}
 			//function activates attack based on ...
 		}
@@ -206,7 +213,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		//build constructor by calling super
 
 		this.broken = false; //tower not destroyed
-		this.health = game.data.playerBaseHealth; //health of the tower
+		this.health = game.data.playerBaseHealth; //health of the tower, based on global var
 		this.alwaysUpdate = true; //update if not on screen 
 		this.body.onCollision = this.onCollision.bind(this); //able to collide w/ tower
 		this.type = "PlayerBase"; //sets type to Player Base
@@ -260,7 +267,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 		//build constructor by calling super
 
 		this.broken = false; //tower not destroyed
-		this.health = game.data.enemyBaseHealth; //health of the tower
+		this.health = game.data.enemyBaseHealth; //health of the tower, based on global var
 		this.alwaysUpdate = true; //update if not on screen 
 		this.body.onCollision = this.onCollision.bind(this); //able to collide w/ tower
 
@@ -313,7 +320,7 @@ game.EnemyCreep = me.Entity.extend({
 			//getShape function creates rectangle for enemy
 		}]);
 
-		this.health = game.data.enemyCreepHealth;
+		this.health = game.data.enemyCreepHealth; //uses a global var
 		//sets health to 2
 		this.alwaysUpdate = true;
 		//makes always update
@@ -350,6 +357,7 @@ game.EnemyCreep = me.Entity.extend({
 	update : function(delta) {
 		if(this.health <= 0) {
 			me.game.world.removeChild(this);
+			//removes creep when health reaches 0
 		}
 
 		this.now = new Date().getTime();
@@ -381,7 +389,7 @@ game.EnemyCreep = me.Entity.extend({
 			if(this.now - this.lastHit >= 1000) {
 				this.lastHit = this.now;
 				//reset?
-				response.b.loseHealth(game.data.enemyCreepAttack);
+				response.b.loseHealth(game.data.enemyCreepAttack); //uses global var
 				//calls loseHealth function with one damage
 			}
 			//times out the hits
@@ -407,7 +415,7 @@ game.EnemyCreep = me.Entity.extend({
 			if ((this.now - this.lastHit >= 1000) && xdif > 0) {
 				this.lastHit = this.now;
 				//reset?
-				response.b.loseHealth(game.data.enemyCreepAttack);
+				response.b.loseHealth(game.data.enemyCreepAttack); //uses global var
 				//calls loseHealth function with one damage
 			}
 			//times out the hits
@@ -480,6 +488,7 @@ game.GameManager = Object.extend({
 			//inserts creep into actual game
 		}
 		//does something if 10 sec since last
+		//timing used global var values
 
 		return true;
 		//always for update functions

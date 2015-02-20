@@ -6,17 +6,17 @@ var game = {
 	data : {
 		// score
 		score : 0,
-		enemyBaseHealth: 10, 
-		playerBaseHealth: 10,
-		enemyCreepHealth: 10,
-		playerHealth: 10,
-		enemyCreepAttack: 1,
-		playerAttack: 1,
-		playerAttackTimer: 1000,
-		creepAttackTimer: 500,
-		playerMoveSpeed: 5,
-		creepMoveSpeed: 5,
-		gameManager: "",
+		enemyBaseHealth: 10, //global var for enemy base health 
+		playerBaseHealth: 10, //global var for player base health 
+		enemyCreepHealth: 10, //global var for creep health
+		playerHealth: 10, //global var for players health
+		enemyCreepAttack: 1, //damage for creeps attack
+		playerAttack: 1, //damage for players attack
+		playerAttackTimer: 1000, //time for player attack
+		creepAttackTimer: 500, //time for creep attack
+		playerMoveSpeed: 5, //speed of player
+		creepMoveSpeed: 5, //speed of creep
+		gameManager: "", 
 		player: "" 
 	},
 	
