@@ -9,7 +9,8 @@ game.resources = [
 	{name: "player", type:"image", src: "data/img/orcSpear.png"}, //added player resource orcSpear
 	{name: "tower", type:"image", src: "data/img/tower_round.svg.png"}, //resource for bases img
 	{name: "creep1", type:"image", src: "data/img/brainmonster.png"}, //resource from enemy creep
-	{name: "title-screen", type:"image", src: "data/img/title.png"},  
+	{name: "creep2", type:"image", src: "data/img/gloop.png"}, //resource from teamate creep
+	{name: "title-screen", type:"image", src: "data/img/title.png"}, //resource that load title screen img
 
 	/* Atlases 
 	 * @example

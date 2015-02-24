@@ -10,12 +10,16 @@ var game = {
 		playerBaseHealth: 10, //global var for player base health 
 		enemyCreepHealth: 10, //global var for creep health
 		playerHealth: 10, //global var for players health
+		gloopHealth: 10,
 		enemyCreepAttack: 1, //damage for creeps attack
 		playerAttack: 1, //damage for players attack
+		gloopAttack: 1,
 		playerAttackTimer: 1000, //time for player attack
 		creepAttackTimer: 500, //time for creep attack
+		gloopAttackTimer: 500, //time for creep attack
 		playerMoveSpeed: 5, //speed of player
 		creepMoveSpeed: 5, //speed of creep
+		gloopMoveSpeed: 5, //speed of creep
 		gameManager: "", 
 		player: "" 
 	},
@@ -59,6 +63,8 @@ var game = {
 		//loading the EnemyBase entity
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
 		//loading the EnemyCreep entity
+		me.pool.register("EnemyGloop", game.EnemyGloop, true);
+		//loading the EnemyCreep entity
 		me.pool.register("JumpTrigger", game.JumpTrigger);
 		me.pool.register("GameManager", game.GameManager);
 		//GameManager for things like timers, added to pool
@@ -67,6 +73,7 @@ var game = {
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 
 		// Start the game.
-		me.state.change(me.state.MENU);
+		me.state.change(me.state.PLAY);
+		//changed starting screen a title screen
 	}
 };
