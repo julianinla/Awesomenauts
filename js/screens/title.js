@@ -12,12 +12,16 @@ game.TitleScreen = me.ScreenObject.extend({
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function() {
 				this._super(me.Renderable, 'init', [510, 30, me.game.viewport.width, me.game.viewport.height]);
+				//basic settings for the title screen
 				this.font = new me.Font("Arial", 46, "white");
+				//font used in title
 			},
 
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "Awesomenauts!", 450, 130);
+				//draw a awesomenauts title
 				this.font.draw(renderer.getContext(), "Press ENTER to Play!", 250, 530);
+				//draw a queue for starting game
 			}
 			//used as main function to draw on screen
 		})));
@@ -26,8 +30,11 @@ game.TitleScreen = me.ScreenObject.extend({
 		this.handler = me.event.subscribe(me.event.KEYDOWN, function(action, keyCode, edge) {
 			if(action === "start") {
 				me.state.change(me.state.PLAY);
+				//go to the playscreen
 			}
+			//if enter key setup is pressed
 		});
+		//event handler for pressing enter key
 
 	},
 	
