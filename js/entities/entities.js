@@ -426,7 +426,32 @@ game.EnemyCreep = me.Entity.extend({
 			}
 			//times out the hits
 		}
+		else if (response.b.type === 'EnemyGloop') {
+			var xdif = this.pos.x - response.b.pos.x;
+			//creates var that is based on position of creep
 
+			this.attacking = true;
+			//makes attacking at this moment
+			this.lastAttacking = this.now;
+			//makes last attack at this moment
+			this.body.vel.x = 0;
+			//stops movement
+
+			if(xdif > 0) {
+				this.pos.x = this.pos.x + 1; 
+				//keeps moving creep to right to maintain its position
+				this.body.vel.x = 0;
+				//stops movement
+			}	
+
+			if ((this.now - this.lastHit >= 1000) && xdif > 0) {
+				this.lastHit = this.now;
+				//reset?
+				response.b.loseHealth(game.data.enemyCreepAttack); //uses global var
+				//calls loseHealth function with one damage
+			}
+			//times out the hits
+		}
 		else if (response.b.type === 'JumpTrigger') {
 			var xdif = this.pos.x - response.b.pos.x;
 
@@ -528,6 +553,32 @@ game.EnemyGloop = me.Entity.extend({
 			}
 			//times out the hits
 		} //if the creep hits player base
+		else if (response.b.type === 'EnemyCreep') {
+			var xdif = this.pos.x - response.b.pos.x;
+			//creates var that is based on position of creep
+
+			this.attacking = true;
+			//makes attacking at this moment
+			this.lastAttacking = this.now;
+			//makes last attack at this moment
+			this.body.vel.x = 0;
+			//stops movement
+
+			if(xdif > 0) {
+				this.pos.x = this.pos.x + 1; 
+				//keeps moving creep to right to maintain its position
+				this.body.vel.x = 0;
+				//stops movement
+			}	
+
+			if ((this.now - this.lastHit >= 1000) && xdif > 0) {
+				this.lastHit = this.now;
+				//reset?
+				response.b.loseHealth(game.data.gloopAttack); //uses global var
+				//calls loseHealth function with one damage
+			}
+			//times out the hits
+		}
 		else if (response.b.type === 'JumpTrigger') {
 			var xdif = this.pos.x - response.b.pos.x;
 
