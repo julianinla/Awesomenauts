@@ -28,6 +28,8 @@ game.PlayerEntity = me.Entity.extend({
 		//sets variable to current date/time
 		this.lastHit = this.now;
 		//finds the date when your last hit player 
+		this.dead = false;
+		this.attack = game.data.playerAttack;
 		this.lastAttack = new Date();
 		//havent used this yet
 
@@ -190,6 +192,9 @@ game.PlayerEntity = me.Entity.extend({
 				this.health = this.now; //makes current health health
 				response.b.loseHealth(game.data.playerAttack); //used global var
 				//lose 1 health from this
+				if(response.b.losehealth <= game.data.playerAttack) {
+					game.data.gold += 1;
+				}
 			}
 			//function activates attack based on ...
 		}
@@ -632,6 +637,8 @@ game.GameManager = Object.extend({
 
 		this.alwaysUpdate = true;
 		//makes it always update
+
+		this.paused = false;
 	},
 	//initialization function for gamemanager
 
@@ -644,6 +651,12 @@ game.GameManager = Object.extend({
 			me.state.current().resetPlayer(10, 0); //respawn the player 
 		}
 		//if the player is dead
+
+		if(Math.round(this.now/game.data.creepAttackTimer) % 20 === 0 && 
+			(this.now - this.lastCreep >= game.data.creepAttackTimer)) {
+			game.data.gold += 1;
+		}
+		//does something if 10 sec since last
 
 		if(Math.round(this.now/game.data.creepAttackTimer) % 10 === 0 && 
 			(this.now - this.lastCreep >= game.data.creepAttackTimer)) {
