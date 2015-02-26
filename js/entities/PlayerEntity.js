@@ -1,13 +1,13 @@
 game.PlayerEntity = me.Entity.extend({
 	init: function(x, y, settings) /* initialize player */ {
-		this.setSuper();
-		this.setPlayerTimers();
-		this.setAttritbutes();
+		this.setSuper(); //sets up the super class
+		this.setPlayerTimers(); //stores player timers
+		this.setAttritbutes(); //sets attributes
 
 		this.type = "PlayerEntity";
 		//gives player entity a type 
 
-		this.setFlags();
+		this.setFlags(); //sets flags?
 
 		this.attack = game.data.playerAttack;
 
@@ -37,6 +37,7 @@ game.PlayerEntity = me.Entity.extend({
 			} //creating shape based on selection in image
 		}]);
 	},
+	//holds the init super class for player
 
 	setPlayerTimers: function() {
 		this.now = new Date().getTime();
@@ -45,6 +46,7 @@ game.PlayerEntity = me.Entity.extend({
 		//finds the date when your last hit player
 		this.lastAttack = new Date().getTime();
 	},
+	//will store all of our timers
 
 	setAttritbutes: function() {
 		this.health = game.data.playerHealth;
@@ -54,12 +56,14 @@ game.PlayerEntity = me.Entity.extend({
 		//tells movement of player when moved
 		//changed position 0 to 20
 	},
+	//holds all data for player attributes
 
 	setFlags: function() {
 		this.facing = "right";
 		//keeps track of which direction player facing
 		this.dead = false;
 	},
+	//contains flags
 
 	update: function(delta) {
 		this.now = new Date().getTime();
