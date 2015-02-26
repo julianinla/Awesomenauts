@@ -14,13 +14,9 @@ game.PlayerEntity = me.Entity.extend({
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		//makes screen follow player movement
 
-		this.renderable.addAnimation("idle", [65]);
-		//setting an idle image
-		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
-		//creating a walk animation using orcSpear img
-		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72, 71], 80);
-		//creating an animationg for attacking
+		this.addAnimation(); //function adds animation
 
+		
 		this.renderable.setCurrentAnimation("idle");
 		//sets current animation to the idle
 	},
@@ -64,6 +60,16 @@ game.PlayerEntity = me.Entity.extend({
 		this.dead = false;
 	},
 	//contains flags
+
+	addAnimation: function() {
+		this.renderable.addAnimation("idle", [65]);
+		//setting an idle image
+		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
+		//creating a walk animation using orcSpear img
+		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72, 71], 80);
+		//creating an animationg for attacking
+	},
+	//adds animations for the players
 
 	update: function(delta) {
 		this.now = new Date().getTime();
