@@ -1,37 +1,15 @@
 game.PlayerEntity = me.Entity.extend({
 	init: function(x, y, settings) /* initialize player */ {
-		this._super(me.Entity, 'init', [x, y, {
-			image: "player", //selecting image
-			width: 64, // width of player
-			height: 64, //height of player
-			spritewidth: "64", // same as width
-			spriteheight: "64", // same as height
-			getShape: function() {
-				return(new me.Rect(0, 0, 64, 64)).toPolygon();
-			} //creating shape based on selection in image
-		}]);
+		this.setSuper();
+		this.setPlayerTimers();
+		this.setAttritbutes();
 
 		this.type = "PlayerEntity";
 		//gives player entity a type 
-		this.health = game.data.playerHealth;
-		//sets health of player to 2
-		//used global var
 
-		this.body.setVelocity(game.data.playerMoveSpeed, 20);
-		//tells movement of player when moved
-		//changed position 0 to 20
+		this.setFlags();
 
-		this.facing = "right";
-		//keeps track of which direction player facing
-
-		this.now = new Date().getTime();
-		//sets variable to current date/time
-		this.lastHit = this.now;
-		//finds the date when your last hit player 
-		this.dead = false;
 		this.attack = game.data.playerAttack;
-		this.lastAttack = new Date();
-		//havent used this yet
 
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		//makes screen follow player movement
@@ -45,6 +23,42 @@ game.PlayerEntity = me.Entity.extend({
 
 		this.renderable.setCurrentAnimation("idle");
 		//sets current animation to the idle
+	},
+
+	setSuper: function() {
+		this._super(me.Entity, 'init', [x, y, {
+			image: "player", //selecting image
+			width: 64, // width of player
+			height: 64, //height of player
+			spritewidth: "64", // same as width
+			spriteheight: "64", // same as height
+			getShape: function() {
+				return(new me.Rect(0, 0, 64, 64)).toPolygon();
+			} //creating shape based on selection in image
+		}]);
+	},
+
+	setPlayerTimers: function() {
+		this.now = new Date().getTime();
+		//sets variable to current date/time
+		this.lastHit = this.now;
+		//finds the date when your last hit player
+		this.lastAttack = new Date().getTime();
+	},
+
+	setAttritbutes: function() {
+		this.health = game.data.playerHealth;
+		//sets health of player to 2
+		//used global var
+		this.body.setVelocity(game.data.playerMoveSpeed, 20);
+		//tells movement of player when moved
+		//changed position 0 to 20
+	},
+
+	setFlags: function() {
+		this.facing = "right";
+		//keeps track of which direction player facing
+		this.dead = false;
 	},
 
 	update: function(delta) {
