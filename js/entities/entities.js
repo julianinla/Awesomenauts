@@ -186,15 +186,16 @@ game.PlayerEntity = me.Entity.extend({
 			}
 
 			if(this.renderable.isCurrentAnimation("attack") &&
-				this.now - this.lastHit >= game.data.playerAttackTimer /* uses global var */ 
+				(this.now - this.lastHit) >= game.data.playerAttackTimer /* uses global var */ 
 				&& (Math.abs(ydif) <= 40) && 
 				(((xdif > 0) && this.facing === "left") || ((xdif < 0) && this.facing === "right"))) {
 				this.health = this.now; //makes current health health
 				response.b.loseHealth(game.data.playerAttack); //used global var
 				//lose 1 health from this
 				if(response.b.losehealth <= game.data.playerAttack) {
-					game.data.gold += 1;
+					game.data.gold += 1; //give the player gold
 				}
+				//if the creep dies basically ...
 			}
 			//function activates attack based on ...
 		}
@@ -654,9 +655,9 @@ game.GameManager = Object.extend({
 
 		if(Math.round(this.now/game.data.creepAttackTimer) % 20 === 0 && 
 			(this.now - this.lastCreep >= game.data.creepAttackTimer)) {
-			game.data.gold += 1;
+			game.data.gold += 1; //gives gold to player
 		}
-		//does something if 10 sec since last
+		//does something if 20 sec since last
 
 		if(Math.round(this.now/game.data.creepAttackTimer) % 10 === 0 && 
 			(this.now - this.lastCreep >= game.data.creepAttackTimer)) {

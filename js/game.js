@@ -9,11 +9,11 @@ var game = {
 		enemyBaseHealth: 10, //global var for enemy base health 
 		playerBaseHealth: 10, //global var for player base health 
 		enemyCreepHealth: 10, //global var for creep health
-		playerHealth: 10, //global var for players health
-		gloopHealth: 10,
+		playerHealth: 20, //global var for players health
+		gloopHealth: 10, //global var for teammate health
 		enemyCreepAttack: 1, //damage for creeps attack
 		playerAttack: 1, //damage for players attack
-		gloopAttack: 1,
+		gloopAttack: 1, //global var for gloop attack
 		playerAttackTimer: 1000, //time for player attack
 		creepAttackTimer: 500, //time for creep attack
 		gloopAttackTimer: 500, //time for creep attack
@@ -22,12 +22,13 @@ var game = {
 		gloopMoveSpeed: 5, //speed of creep
 		gameManager: "", 
 		player: "",
-		exp: 0,
-		gold: 0,
-		exp1: 0,
+		exp: 0, //experience var number
+		gold: 0, //number of gold player has
+		//different options for use of experience below
+		exp1: 0, 
 		exp2: 0,
 		exp3: 0,
-		exp4: 0
+		exp4: 0 
 	},
 	
 	
