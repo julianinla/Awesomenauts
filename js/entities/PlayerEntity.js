@@ -83,6 +83,7 @@ game.PlayerEntity = me.Entity.extend({
 		//function checks for movement 
 
 		this.setAnimation();
+		//calls set animation rather than animation code in update
 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//handles player collisions
@@ -180,6 +181,7 @@ game.PlayerEntity = me.Entity.extend({
 			//makes sure to switch back to idle animation
 		}
 	},
+	//set animation function essentially sees animation and changes
 
 	collideHandler : function(response) {
 		if(response.b.type === 'EnemyBaseEntity') {
