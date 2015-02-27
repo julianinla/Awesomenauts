@@ -1,6 +1,6 @@
 game.PlayerEntity = me.Entity.extend({
 	init: function(x, y, settings) /* initialize player */ {
-		this.setSuper(); //sets up the super class
+		this.setSuper(x, y, settings); //sets up the super class
 		this.setPlayerTimers(); //stores player timers
 		this.setAttritbutes(); //sets attributes
 
@@ -21,7 +21,7 @@ game.PlayerEntity = me.Entity.extend({
 		//sets current animation to the idle
 	},
 
-	setSuper: function() {
+	setSuper: function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, y, {
 			image: "player", //selecting image
 			width: 64, // width of player
@@ -76,7 +76,7 @@ game.PlayerEntity = me.Entity.extend({
 	update: function(delta) {
 		this.now = new Date().getTime();
 
-		this.dead = checkIfDead();
+		this.dead = this.checkIfDead();
 		//dead var is equal to result of func
 
 		this.checkKeyPressesAndMove();

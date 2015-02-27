@@ -1,17 +1,6 @@
 game.PlayerBaseEntity = me.Entity.extend({
 	init: function(x, y, settings) {
-		this._super(me.Entity, 'init', [x, y, {
-			image: "tower", //img for entity
-			width: 100, //width of base
-			height: 100, //height of base 
-			spritewidth: "100", //similar to width
-			spriteheight: "100", //similar to height
-			getShape: function() {
-				return (new me.Rect(0, 0, 100, 70)).toPolygon();
-			}
-			//getShape function for use
-		}]); 
-		//build constructor by calling super
+		this.setSuper(x, y, settings); //super class for data
 
 		this.broken = false; //tower not destroyed
 		this.health = game.data.playerBaseHealth; //health of the tower, based on global var
@@ -19,10 +8,8 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.body.onCollision = this.onCollision.bind(this); //able to collide w/ tower
 		this.type = "PlayerBase"; //sets type to Player Base
 
-		this.renderable.addAnimation("idle", [0]);
-		//add animation for unbroken tower
-		this.renderable.addAnimation("broken", [1]);
-		//add animation for broken tower
+		this.setAnimation();
+		//set animation function
 		this.renderable.setCurrentAnimation("idle");
 		//sets the current animation to idle
 	}, 
@@ -41,6 +28,28 @@ game.PlayerBaseEntity = me.Entity.extend({
 		return true;
 	},
 	//update function to update
+
+	setSuper: function(x, y, settings) {
+		this._super(me.Entity, 'init', [x, y, {
+			image: "tower", //img for entity
+			width: 100, //width of base
+			height: 100, //height of base 
+			spritewidth: "100", //similar to width
+			spriteheight: "100", //similar to height
+			getShape: function() {
+				return (new me.Rect(0, 0, 100, 70)).toPolygon();
+			}
+			//getShape function for use
+		}]); 
+		//build constructor by calling super
+	},
+
+	setAnimation: function() {
+		this.renderable.addAnimation("idle", [0]);
+		//add animation for unbroken tower
+		this.renderable.addAnimation("broken", [1]);
+		//add animation for broken tower
+	},
 
 	onCollision: function() {
 		//empty onCollision function for later
