@@ -58,6 +58,8 @@ game.PlayerEntity = me.Entity.extend({
 		this.facing = "right";
 		//keeps track of which direction player facing
 		this.dead = false;
+		//flag for player death
+		this.attacking = false;
 	},
 	//contains flags
 
@@ -80,29 +82,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.checkKeyPressesAndMove();
 		//function checks for movement 
 
-		if(me.input.isKeyPressed("attack")) {
-			if(!this.renderable.isCurrentAnimation("attack")) {
-				this.renderable.setCurrentAnimation("attack", "idle");
-				//sets current animation then switches over
-				this.renderable.setAnimationFrame();
-				//begins animation from beginning not 
-				//from left off
-			}
-			//uses animation if not already in use
-		}
-		//shows action on attacking
-		else if(this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")){
-			if(!this.renderable.isCurrentAnimation("walk")) {
-				this.renderable.setCurrentAnimation("walk");
-				//makes walk animation occur when moving
-				//does so if not already walk animation
-			}
-		} 
-		//adds if statement for movement
-		else if(!this.renderable.isCurrentAnimation("attack")) {
-			this.renderable.setCurrentAnimation("idle");
-			//makes sure to switch back to idle animation
-		}
+		this.setAnimation();
 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//handles player collisions
@@ -142,6 +122,8 @@ game.PlayerEntity = me.Entity.extend({
 		}
 		//allows for jumping when key is pressed, 
 		//and if not jumping/falling already
+
+		this.attacking = me.input.isKeyPressed("attack");
 	},
 	//movement for checking the movement of player
 
@@ -171,6 +153,32 @@ game.PlayerEntity = me.Entity.extend({
 		//sets precreated jumping var to true
 		this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		//causes jump to actually happen
+	},
+
+	setAnimation: function() {
+		if(this.attacking) {
+			if(!this.renderable.isCurrentAnimation("attack")) {
+				this.renderable.setCurrentAnimation("attack", "idle");
+				//sets current animation then switches over
+				this.renderable.setAnimationFrame();
+				//begins animation from beginning not 
+				//from left off
+			}
+			//uses animation if not already in use
+		}
+		//shows action on attacking
+		else if(this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")){
+			if(!this.renderable.isCurrentAnimation("walk")) {
+				this.renderable.setCurrentAnimation("walk");
+				//makes walk animation occur when moving
+				//does so if not already walk animation
+			}
+		} 
+		//adds if statement for movement
+		else if(!this.renderable.isCurrentAnimation("attack")) {
+			this.renderable.setCurrentAnimation("idle");
+			//makes sure to switch back to idle animation
+		}
 	},
 
 	collideHandler : function(response) {
