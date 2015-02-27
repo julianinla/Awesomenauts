@@ -185,83 +185,99 @@ game.PlayerEntity = me.Entity.extend({
 
 	collideHandler : function(response) {
 		if(response.b.type === 'EnemyBaseEntity') {
-			var ydif = this.pos.y - response.b.pos.y;
-			//represnets difference between players y position and bases
-			var xdif = this.pos.x - response.b.pos.x;
-			//represnets difference between players x position and bases
-
-			if(ydif < -40 && xdif < 70 && xdif > -35) /* only checking if necaessary */ {
-				this.body.falling = false;
-				//stops player from fallng into base
-				this.body.vel.y = - 1;
-				//pushes player up from top
-			}
-			//need to check ydif first
-			else if(xdif > -35 /* xdif relation to found number */ && 
-			this.facing === 'right'  /* need to know which way facing */ && 
-			(xdif < 0)) {
-				this.body.vel.x = 0;
-				//stop player from moving
-				this.pos.x = this.pos.x - 1;
-				//slightly move player backwards
-			}
-			else if(xdif < 70 /* xdif relation to found number */ && 
-			this.facing === 'left' /* need to know which way facing */ && 
-			(xdif > 0)) {
-				this.body.vel.x = 0;
-				//stop player movement
-				this.pos.x = this.pos.x + 1;
-				//move player away slightly
-			}
-
-
-			if(this.renderable.isCurrentAnimation("attack") && 
-				this.now - this.lastHit >= game.data.playerAttackTimer /* uses timing global var */ ) {
-				this.lastHit = this.now;
-				response.b.loseHealth(game.data.playerAttack);
-				//causes to remove health
-				//uses global var
-			}
-			//attack on collision
+			this.collideWithEnemyBase(response);
 		}
 		//sees if player is colliding w/ enemy base
 		//if so...
 		else if (response.b.type === 'EnemyCreep')  {
-			var xdif = this.pos.x - response.b.pos.x; //sets xdif to x position
-			var ydif = this.pos.y - response.b.pos.y; //sets ydif to y position
-
-			if(xdif > 0) {
-				this.pos.x = this.pos.x + 1;
-				if (this.facing === "left") {
-					this.body.vel.x = 0;
-				}
-				//prevents left movement with creep
-			}
-			else {
-				this.pos.x = this.pos.x - 1;
-				if (this.facing === "right") {
-					this.body.vel.x = 0;
-				}
-				//prevents right movement with creep
-			}
-
-			if(this.renderable.isCurrentAnimation("attack") &&
-				(this.now - this.lastHit) >= game.data.playerAttackTimer /* uses global var */ 
-				&& (Math.abs(ydif) <= 40) && 
-				(((xdif > 0) && this.facing === "left") || ((xdif < 0) && this.facing === "right"))) {
-				this.health = this.now; //makes current health health
-				response.b.loseHealth(game.data.playerAttack); //used global var
-				//lose 1 health from this
-				if(response.b.losehealth <= game.data.playerAttack) {
-					game.data.gold += 1; //give the player gold
-				}
-				//if the creep dies basically ...
-			}
-			//function activates attack based on ...
+			this.collidWithEnemyCreep(response);
 		}
 		//if player collides with creep
 	},
 	//collideHandler function creates collsision for player w/ objects
+
+	collideWithEnemyBase: function(response) {
+		var ydif = this.pos.y - response.b.pos.y;
+		//represnets difference between players y position and bases
+		var xdif = this.pos.x - response.b.pos.x;
+		//represnets difference between players x position and bases
+
+		if(ydif < -40 && xdif < 70 && xdif > -35) /* only checking if necaessary */ {
+			this.body.falling = false;
+			//stops player from fallng into base
+			this.body.vel.y = - 1;
+			//pushes player up from top
+		}
+		//need to check ydif first
+		else if(xdif > -35 /* xdif relation to found number */ && 
+		this.facing === 'right'  /* need to know which way facing */ && 
+		(xdif < 0)) {
+			this.body.vel.x = 0;
+			//stop player from moving
+			this.pos.x = this.pos.x - 1;
+			//slightly move player backwards
+		}
+		else if(xdif < 70 /* xdif relation to found number */ && 
+		this.facing === 'left' /* need to know which way facing */ && 
+		(xdif > 0)) {
+			this.body.vel.x = 0;
+			//stop player movement
+			this.pos.x = this.pos.x + 1;
+			//move player away slightly
+		}
+
+
+		if(this.renderable.isCurrentAnimation("attack") && 
+			this.now - this.lastHit >= game.data.playerAttackTimer /* uses timing global var */ ) {
+			this.lastHit = this.now;
+			response.b.loseHealth(game.data.playerAttack);
+			//causes to remove health
+			//uses global var
+		}
+		//attack on collision
+	},
+
+	collidWithEnemyCreep: function(response) {
+		var xdif = this.pos.x - response.b.pos.x; //sets xdif to x position
+		var ydif = this.pos.y - response.b.pos.y; //sets ydif to y position
+
+		this.stopMovement(xdif);
+
+		this.checkAttack(xdif, ydif, response);
+	},
+
+	stopMovement: function(xdif) {
+		if(xdif > 0) {
+			this.pos.x = this.pos.x + 1;
+			if (this.facing === "left") {
+				this.body.vel.x = 0;
+			}
+			//prevents left movement with creep
+		}
+		else {
+			this.pos.x = this.pos.x - 1;
+			if (this.facing === "right") {
+				this.body.vel.x = 0;
+			}
+			//prevents right movement with creep
+		}
+	},
+
+	checkAttack: function(xdif, ydif, response) {
+		if(this.renderable.isCurrentAnimation("attack") &&
+			(this.now - this.lastHit) >= game.data.playerAttackTimer /* uses global var */ 
+			&& (Math.abs(ydif) <= 40) && 
+			(((xdif > 0) && this.facing === "left") || ((xdif < 0) && this.facing === "right"))) {
+			this.health = this.now; //makes current health health
+			response.b.loseHealth(game.data.playerAttack); //used global var
+			//lose 1 health from this
+			if(response.b.losehealth <= game.data.playerAttack) {
+				game.data.gold += 1; //give the player gold
+			}
+			//if the creep dies basically ...
+		}
+		//function activates attack based on ...
+	}
 
 	loseHealth : function(damage) {
 		this.health = this.health - damage;
