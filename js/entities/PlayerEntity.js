@@ -75,8 +75,10 @@ game.PlayerEntity = me.Entity.extend({
 		this.now = new Date().getTime();
 
 		this.dead = checkIfDead();
+		//dead var is equal to result of func
 
 		this.checkKeyPressesAndMove();
+		//function checks for movement 
 
 		if(me.input.isKeyPressed("attack")) {
 			if(!this.renderable.isCurrentAnimation("attack")) {
@@ -124,9 +126,11 @@ game.PlayerEntity = me.Entity.extend({
 	checkKeyPressesAndMove: function() {
 		if(me.input.isKeyPressed("right")) {
 			this.moveRight();
+			//replaces code with move right function
 		}
 		else if(me.input.isKeyPressed("left")) {
 			this.moveLeft();
+			//replaces code with move left function
 		}
 		else {
 			this.body.vel.x = 0;
@@ -139,6 +143,7 @@ game.PlayerEntity = me.Entity.extend({
 		//allows for jumping when key is pressed, 
 		//and if not jumping/falling already
 	},
+	//movement for checking the movement of player
 
 	moveRight: function() {
 		this.body.vel.x += this.body.accel.x * me.timer.tick;
@@ -149,6 +154,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.facing = "right";
 		//says youre facing right
 	},
+
 
 	moveLeft: function() {
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
