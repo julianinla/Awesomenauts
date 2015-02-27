@@ -16,7 +16,7 @@ game.PlayerEntity = me.Entity.extend({
 
 		this.addAnimation(); //function adds animation
 
-		
+
 		this.renderable.setCurrentAnimation("idle");
 		//sets current animation to the idle
 	},
@@ -74,43 +74,9 @@ game.PlayerEntity = me.Entity.extend({
 	update: function(delta) {
 		this.now = new Date().getTime();
 
-		if(this.health <= 0) {
-			this.dead = true;
-			//the player is "dead"
-		}
-		//if players health hits 0
+		this.dead = checkIfDead();
 
-		if(me.input.isKeyPressed("right")) {
-			this.body.vel.x += this.body.accel.x * me.timer.tick;
-			//current postion changes by setVelocity() 
-			//me.timer.tick keeps movement smooth
-			this.flipX(true);
-			//flips the animation for right movement
-			this.facing = "right";
-			//says youre facing right
-		}
-		else if(me.input.isKeyPressed("left")) {
-			this.body.vel.x -= this.body.accel.x * me.timer.tick;
-			//current postion changes by setVelocity() 
-			//me.timer.tick keeps movement smooth
-			this.flipX(false);
-			//stops animation from flipping to right when moving left
-			this.facing = "left";
-			//says youre facing left
-		}
-		else {
-			this.body.vel.x = 0;
-			//if not pressing, no change in velocity
-		}
-
-		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling) {
-			this.body.jumping = true;
-			//sets precreated jumping var to true
-			this.body.vel.y -= this.body.accel.y * me.timer.tick;
-			//causes jump to actually happen
-		}
-		//allows for jumping when key is pressed, 
-		//and if not jumping/falling already
+		this.checkKeyPressesAndMove();
 
 		if(me.input.isKeyPressed("attack")) {
 			if(!this.renderable.isCurrentAnimation("attack")) {
@@ -145,6 +111,60 @@ game.PlayerEntity = me.Entity.extend({
 		//updates in real time
 
 		return true;
+	},
+
+	checkIfDead: function() {
+		if(this.health <= 0) {
+			return true;
+			//the player is "dead"
+		}
+		//if players health hits 0
+	},
+
+	checkKeyPressesAndMove: function() {
+		if(me.input.isKeyPressed("right")) {
+			this.moveRight();
+		}
+		else if(me.input.isKeyPressed("left")) {
+			this.moveLeft();
+		}
+		else {
+			this.body.vel.x = 0;
+			//if not pressing, no change in velocity
+		}
+
+		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling) {
+			this.jump();
+		}
+		//allows for jumping when key is pressed, 
+		//and if not jumping/falling already
+	},
+
+	moveRight: function() {
+		this.body.vel.x += this.body.accel.x * me.timer.tick;
+		//current postion changes by setVelocity() 
+		//me.timer.tick keeps movement smooth
+		this.flipX(true);
+		//flips the animation for right movement
+		this.facing = "right";
+		//says youre facing right
+	},
+
+	moveLeft: function() {
+		this.body.vel.x -= this.body.accel.x * me.timer.tick;
+		//current postion changes by setVelocity() 
+		//me.timer.tick keeps movement smooth
+		this.flipX(false);
+		//stops animation from flipping to right when moving left
+		this.facing = "left";
+		//says youre facing left
+	},
+
+	jump: function() {
+		this.body.jumping = true;
+		//sets precreated jumping var to true
+		this.body.vel.y -= this.body.accel.y * me.timer.tick;
+		//causes jump to actually happen
 	},
 
 	collideHandler : function(response) {
