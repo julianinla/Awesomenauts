@@ -236,15 +236,19 @@ game.PlayerEntity = me.Entity.extend({
 		}
 		//attack on collision
 	},
+	//collide function for interaction w/ enemy base
 
 	collidWithEnemyCreep: function(response) {
 		var xdif = this.pos.x - response.b.pos.x; //sets xdif to x position
 		var ydif = this.pos.y - response.b.pos.y; //sets ydif to y position
 
 		this.stopMovement(xdif);
+		//function for stopping movement in colllision
 
 		this.checkAttack(xdif, ydif, response);
+		//for having an attack with collided
 	},
+	//collide function for interaction w/ enemy creep
 
 	stopMovement: function(xdif) {
 		if(xdif > 0) {
@@ -262,6 +266,7 @@ game.PlayerEntity = me.Entity.extend({
 			//prevents right movement with creep
 		}
 	},
+	//function to stop movement on collision
 
 	checkAttack: function(xdif, ydif, response) {
 		if(this.renderable.isCurrentAnimation("attack") &&
@@ -277,10 +282,12 @@ game.PlayerEntity = me.Entity.extend({
 			//if the creep dies basically ...
 		}
 		//function activates attack based on ...
-	}
+	},
+	//attack function for creep collisions
 
 	loseHealth : function(damage) {
 		this.health = this.health - damage;
+		//substracts health on attack
 	}
 });
 //create player entity for use in game
