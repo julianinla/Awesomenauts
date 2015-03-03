@@ -74,9 +74,11 @@ var game = {
 		me.pool.register("EnemyGloop", game.EnemyGloop, true);
 		//loading the EnemyCreep entity
 		me.pool.register("JumpTrigger", game.JumpTrigger);
+		//jump trigger entity for jumping
 		me.pool.register("GameTimerManager", game.GameTimerManager);
 		//GameManager for things like timers, added to pool
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
+		//GameManager for things like your players death
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());

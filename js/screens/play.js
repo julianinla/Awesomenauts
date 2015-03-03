@@ -12,12 +12,12 @@ game.PlayScreen = me.ScreenObject.extend({
 		//reset or respawn the player
 
 		var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
-		//incorporates GameManager into play.js
+		//incorporates GameTimerManager into play.js
 		me.game.world.addChild(gameTimerManager, 0);
 		//adds it into actual game
 
 		var heroDeathManager = me.pool.pull("HeroDeathManager", 0, 0, {});
-		//incorporates GameManager into play.js
+		//incorporates HeroDeathManager into play.js
 		me.game.world.addChild(heroDeathManager, 0);
 		//adds it into actual game
 
