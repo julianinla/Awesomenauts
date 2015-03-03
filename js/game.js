@@ -20,7 +20,8 @@ var game = {
 		playerMoveSpeed: 5, //speed of player
 		creepMoveSpeed: 5, //speed of creep
 		gloopMoveSpeed: 5, //speed of creep
-		gameManager: "", 
+		gameTimerManager: "", //global var game manager
+		heroDeathManager: "", //global var death managerr
 		player: "",
 		exp: 0, //experience var number
 		gold: 0, //number of gold player has
@@ -73,8 +74,9 @@ var game = {
 		me.pool.register("EnemyGloop", game.EnemyGloop, true);
 		//loading the EnemyCreep entity
 		me.pool.register("JumpTrigger", game.JumpTrigger);
-		me.pool.register("GameManager", game.GameManager);
+		me.pool.register("GameTimerManager", game.GameTimerManager);
 		//GameManager for things like timers, added to pool
+		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());

@@ -18,7 +18,7 @@ game.TitleScreen = me.ScreenObject.extend({
 			},
 
 			draw: function(renderer) {
-				this.font.draw(renderer.getContext(), "Awesomenauts!", 450, 130);
+				this.font.draw(renderer.getContext(), "Awesomenauts!", 325, 130);
 				//draw a awesomenauts title
 				this.font.draw(renderer.getContext(), "Press ENTER to Play!", 250, 530);
 				//draw a queue for starting game

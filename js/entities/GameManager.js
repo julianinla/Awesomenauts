@@ -1,4 +1,4 @@
-game.GameManager = Object.extend({
+game.GameTimerManager = Object.extend({
 	init : function(x, y, settings) {
 		this.now = new Date().getTime();
 		//makes now the current date/time
@@ -18,18 +18,23 @@ game.GameManager = Object.extend({
 		this.now = new Date().getTime();
 		//gets now var
 
-		if(game.data.player.dead) {
-			me.game.world.removeChild(game.data.player); //remove dead player body
-			me.state.current().resetPlayer(10, 0); //respawn the player 
-		}
-		//if the player is dead
+		this.goldTimerCheck();
+		this.creepTimerCheck();
+		this.gloopTimerCheck();
 
+		return true;
+		//always for update functions
+	},
+
+	goldTimerCheck: function() {
 		if(Math.round(this.now/game.data.creepAttackTimer) % 20 === 0 && 
 			(this.now - this.lastCreep >= game.data.creepAttackTimer)) {
 			game.data.gold += 1; //gives gold to player
 		}
 		//does something if 20 sec since last
+	},
 
+	creepTimerCheck: function() {
 		if(Math.round(this.now/game.data.creepAttackTimer) % 10 === 0 && 
 			(this.now - this.lastCreep >= game.data.creepAttackTimer)) {
 			this.lastCreep = this.now;
@@ -41,7 +46,9 @@ game.GameManager = Object.extend({
 		}
 		//does something if 10 sec since last
 		//timing used global var values
+	},
 
+	gloopTimerCheck: function() {
 		if(Math.round(this.now/game.data.gloopAttackTimer) % 10 === 0 && 
 			(this.now - this.lastGloop >= game.data.gloopAttackTimer)) {
 			this.lastGloop = this.now;
@@ -53,9 +60,21 @@ game.GameManager = Object.extend({
 		}
 		//does something if 10 sec since last
 		//timing used global var values
-
-		return true;
-		//always for update functions
-	},
+	}
 });
 //handles things like timers, not entities
+
+game.HeroDeathManager = Object.extend({
+	init: function(x, y, settings) {
+		this.alwaysUpdate = true;
+		//makes it always update
+	},
+
+	update: function() {
+		if(game.data.player.dead) {
+			me.game.world.removeChild(game.data.player); //remove dead player body
+			me.state.current().resetPlayer(10, 0); //respawn the player 
+		}
+		//if the player is dead
+	} 
+});
