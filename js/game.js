@@ -81,7 +81,7 @@ var game = {
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		//GameManager for things like your players death
 		me.pool.register("ExperienceManager", game.ExperienceManager);
-		//GameManager for things like your players death
+		//GameManager for handling experience the player earns
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());

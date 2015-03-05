@@ -22,7 +22,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		//adds it into actual game
 
 		var experienceManager = me.pool.pull("ExperienceManager", 0, 0, {});
-		//incorporates HeroDeathManager into play.js
+		//incorporates ExperienceManager into play.js
 		me.game.world.addChild(experienceManager, 0);
 		//adds it into actual game
 
