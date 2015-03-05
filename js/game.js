@@ -56,6 +56,7 @@ var game = {
 		exp3: 0,
 		exp4: 0
 	});
+	//function to save exp values
 
 	// Initialize the audio.
 	me.audio.init("mp3,ogg");

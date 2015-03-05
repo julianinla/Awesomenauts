@@ -90,10 +90,12 @@ game.ExperienceManager = Object.extend({
 	update: function() {
 		if (game.data.win === true && !this.gameOver) {
 			this.gameOver(true);
+			//passes in false, tells game you won
 		}
 		//if the player wins and game is over
 		else if (game.data.win === false && !this.gameOver) {
 			this.gameOver(false);
+			//passes in false, tells gmae you lost
 		}
 		//if the player loses and game is over
 
@@ -105,14 +107,17 @@ game.ExperienceManager = Object.extend({
 			game.data.exp += 10;
 			//gives the player 10 exp points
 		} 
+		//if you won game
 		else {
 			game.data.exp += 1;
 			//gives the player 1 exp point
 		}
+		//if you lost
 		
 		this.gameOver = true;
 		//sets gameOver to true
 		me.save.exp = game.data.exp;
+		//saves your exp in melonjs
 	}
 });
 //ExperienceManager for player experience
