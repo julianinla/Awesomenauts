@@ -21,6 +21,11 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.game.world.addChild(heroDeathManager, 0);
 		//adds it into actual game
 
+		var experienceManager = me.pool.pull("ExperienceManager", 0, 0, {});
+		//incorporates HeroDeathManager into play.js
+		me.game.world.addChild(experienceManager, 0);
+		//adds it into actual game
+
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		//binding right to be able to perform action
 		me.input.bindKey(me.input.KEY.LEFT, "left");

@@ -64,8 +64,7 @@ game.GameTimerManager = Object.extend({
 });
 //handles things like timers, not entities
 
-game.HeroDeathManager = Object.extend({
-	init: function(x, y, settings) {
+game.HeroDeathManager = Object.extend({	init: function(x, y, settings) {
 		this.alwaysUpdate = true;
 		//makes it always update
 	},
@@ -77,4 +76,21 @@ game.HeroDeathManager = Object.extend({
 		}
 		//if the player is dead
 	} 
+});
+
+game.ExperienceManager = Object.extend({
+	init: function(x, y, settings) {
+		this.alwaysUpdate = true;
+	},
+
+	update: function() {
+		if (game.data.win === true) {
+			game.data.exp += 10;
+		}
+		else if (game.data.win === false) {
+			game.data.exp += 1;
+		}
+
+		return true;
+	}
 });

@@ -18,6 +18,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 	update: function(delta) {
 		if(this.health <= 0) {
 			this.broken = true; //breaks the tower
+			game.data.win = false;
 			this.renderable.setCurrentAnimation("broken");
 			//sets the current animation to broken
 		}

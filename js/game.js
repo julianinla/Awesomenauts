@@ -29,7 +29,8 @@ var game = {
 		exp1: 0, 
 		exp2: 0,
 		exp3: 0,
-		exp4: 0 
+		exp4: 0,
+		win: ""
 	},
 	
 	
@@ -78,6 +79,8 @@ var game = {
 		me.pool.register("GameTimerManager", game.GameTimerManager);
 		//GameManager for things like timers, added to pool
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
+		//GameManager for things like your players death
+		me.pool.register("ExperienceManager", game.ExperienceManager);
 		//GameManager for things like your players death
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
