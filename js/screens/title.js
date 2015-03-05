@@ -13,12 +13,14 @@ game.TitleScreen = me.ScreenObject.extend({
 				this.font = new me.Font("Arial", 46, "white");
 				//font used in title
 				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
+				//handles being able to click on start
 			},
 
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "Awesomenauts!", 325, 130);
+				//gives game title on start screen
 				this.font.draw(renderer.getContext(), "START A NEW GAME", this.pos.x, this.pos.y);
-				//draw a awesomenauts title
+				//draw new game start
 			},
 			//used as main function to draw on screen
 
@@ -28,12 +30,15 @@ game.TitleScreen = me.ScreenObject.extend({
 
 			newGame: function() {
 				me.input.releasePointerEvent('pointerdown', this);
+				//gets rid of pointerfunction
 				me.save.remove('exp');
 				me.save.remove('exp1');
 				me.save.remove('exp2');
 				me.save.remove('exp3');
 				me.save.remove('exp4');
+				//removes all these vars from game when start new
 				me.state.change(me.state.PLAY);
+				//starts the game
 			}
 		})));
 		//generic renderable
