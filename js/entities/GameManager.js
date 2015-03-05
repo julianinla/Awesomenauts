@@ -89,21 +89,30 @@ game.ExperienceManager = Object.extend({
 
 	update: function() {
 		if (game.data.win === true && !this.gameOver) {
-			game.data.exp += 10;
-			//gives the player 10 exp points
-			this.gameOver = true;
-			//sets gameOver to true
+			this.gameOver(true);
 		}
 		//if the player wins and game is over
 		else if (game.data.win === false && !this.gameOver) {
-			game.data.exp += 1;
-			//gives the player 1 exp point
-			this.gameOver = true;
-			//sets gameOver to true
+			this.gameOver(false);
 		}
 		//if the player loses and game is over
 
 		return true;
+	},
+
+	gameOver: function(win) {
+		if(win) {
+			game.data.exp += 10;
+			//gives the player 10 exp points
+		} 
+		else {
+			game.data.exp += 1;
+			//gives the player 1 exp point
+		}
+		
+		this.gameOver = true;
+		//sets gameOver to true
+		me.save.exp = game.data.exp;
 	}
 });
 //ExperienceManager for player experience
