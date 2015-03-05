@@ -82,18 +82,21 @@ game.ExperienceManager = Object.extend({
 	init: function(x, y, settings) {
 		this.alwaysUpdate = true;
 		//makes game always update
+		this.gameOver = false;
 	},
 	//initializes all vars
 
 	update: function() {
-		if (game.data.win === true) {
+		if (game.data.win === true && !this.gameOver) {
 			game.data.exp += 10;
 			//gives the player 10 exp points
+			this.gameOver = true;
 		}
 		//if the player wins
-		else if (game.data.win === false) {
+		else if (game.data.win === false && !this.gameOver) {
 			game.data.exp += 1;
 			//gives the player 1 exp point
+			this.gameOver = true;
 		}
 		//if the player loses
 
