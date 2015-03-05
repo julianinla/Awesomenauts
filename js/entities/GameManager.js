@@ -83,6 +83,7 @@ game.ExperienceManager = Object.extend({
 		this.alwaysUpdate = true;
 		//makes game always update
 		this.gameOver = false;
+		//sets gameOver to false
 	},
 	//initializes all vars
 
@@ -91,14 +92,16 @@ game.ExperienceManager = Object.extend({
 			game.data.exp += 10;
 			//gives the player 10 exp points
 			this.gameOver = true;
+			//sets gameOver to true
 		}
-		//if the player wins
+		//if the player wins and game is over
 		else if (game.data.win === false && !this.gameOver) {
 			game.data.exp += 1;
 			//gives the player 1 exp point
 			this.gameOver = true;
+			//sets gameOver to true
 		}
-		//if the player loses
+		//if the player loses and game is over
 
 		return true;
 	}
