@@ -39,12 +39,12 @@ game.TitleScreen = me.ScreenObject.extend({
 				//starts the game
 			}
 		})));
-		//generic renderable
+		//renderable starting new game
 
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function() {
 				this._super(me.Renderable, 'init', [380, 340, 300, 50]);
-				//basic settings for the title screen
+				//basic settings for the title screen, diff position from start
 				this.font = new me.Font("Arial", 46, "white");
 				//font used in title
 				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
@@ -53,7 +53,7 @@ game.TitleScreen = me.ScreenObject.extend({
 
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "CONTINUE", this.pos.x, this.pos.y);
-				//draw new game start
+				//draw continue start button
 			},
 			//used as main function to draw on screen
 
@@ -68,7 +68,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				//starts the game
 			}
 		})));
-		//renderable
+		//renderable for continuing game
 
 	},
 	
