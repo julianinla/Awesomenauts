@@ -11,6 +11,7 @@ game.resources = [
 	{name: "creep1", type:"image", src: "data/img/brainmonster.png"}, //resource from enemy creep
 	{name: "creep2", type:"image", src: "data/img/gloop.png"}, //resource from teamate creep
 	{name: "title-screen", type:"image", src: "data/img/title.png"}, //resource that load title screen img
+	{name: "exp-screen", type:"image", src: "data/img/loadpic.png"}, //resource that load title screen img
 
 	/* Atlases 
 	 * @example

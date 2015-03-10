@@ -70,7 +70,7 @@ game.TitleScreen = me.ScreenObject.extend({
 
 				me.input.releasePointerEvent('pointerdown', this);
 				//gets rid of pointerfunction
-				me.state.change(me.state.PLAY);
+				me.state.change(me.state.SPENDEXP);
 				//starts the game
 			}
 		})));
