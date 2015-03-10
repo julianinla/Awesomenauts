@@ -4,7 +4,7 @@ game.SpendExp = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {	
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('exp-screen')), -10); 
-		//added a title screen image that needs to load
+		//added a exp screen image that needs to load
 
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function() {
@@ -16,7 +16,7 @@ game.SpendExp = me.ScreenObject.extend({
 
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "SPEND", this.pos.x, this.pos.y);
-				//draw new game start
+				//draw spend exp screen
 			},
 			//used as main function to draw on screen
 		})));

@@ -71,7 +71,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.input.releasePointerEvent('pointerdown', this);
 				//gets rid of pointerfunction
 				me.state.change(me.state.SPENDEXP);
-				//starts the game
+				//loads spend exp screen
 			}
 		})));
 		//renderable for continuing game

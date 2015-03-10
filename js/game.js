@@ -59,6 +59,7 @@ var game = {
 	//function to save exp values
 
 	me.state.SPENDEXP = 112;
+	//gives number value to spendexp
 
 	// Initialize the audio.
 	me.audio.init("mp3,ogg");
