@@ -35,6 +35,14 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.save.remove('exp3');
 				me.save.remove('exp4');
 				//removes all these vars from game when start new
+				me.save.add({
+					exp: 0,
+					exp1: 0,
+					exp2: 0,
+					exp3: 0,
+					exp4: 0
+				});
+				//function to save exp values
 				me.state.change(me.state.PLAY);
 				//starts the game
 			}
