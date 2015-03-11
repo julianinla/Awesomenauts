@@ -6,7 +6,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		// reset the score
 		game.data.score = 0;
 
-		me.levelDirector.loadLevel("level1"); //loading the map
+		me.levelDirector.loadLevel("level2"); //loading the map
 
 		this.resetPlayer(0, 420);
 		//reset or respawn the player
