@@ -16,17 +16,17 @@ game.SpendExp = me.ScreenObject.extend({
 
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "PRESS 1-4 TO BUY, 5 TO SKIP", this.pos.x, this.pos.y);
-				//draw spend exp screen
+				//draw spend exp screen, gives command options
 				this.font.draw(renderer.getContext(), "CURRENT EXP: " + game.data.exp.toString(), this.pos.x, this.pos.y + 50);
-				//draw spend exp screen
+				//draws current exp text
 				this.font.draw(renderer.getContext(), "1: MIDAS " + game.data.exp.toString(), this.pos.x, this.pos.y + 100);
-				//draw spend exp screen
+				//draws option 1
 				this.font.draw(renderer.getContext(), "2: ZEPHYR " + game.data.exp.toString(), this.pos.x, this.pos.y + 150);
-				//draw spend exp screen
+				//draws option 2
 				this.font.draw(renderer.getContext(), "3: ARES " + game.data.exp.toString(), this.pos.x, this.pos.y + 200);
-				//draw spend exp screen
+				//draws option 3
 				this.font.draw(renderer.getContext(), "4: VULCAN " + game.data.exp.toString(), this.pos.x, this.pos.y + 250);
-				//draw spend exp screen
+				//draws option 4
 			},
 			//used as main function to draw on screen
 		})));
