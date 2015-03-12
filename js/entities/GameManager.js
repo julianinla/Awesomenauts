@@ -39,7 +39,7 @@ game.GameTimerManager = Object.extend({
 			(this.now - this.lastCreep >= game.data.creepAttackTimer)) {
 			this.lastCreep = this.now;
 			//resets time
-			var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
+			var creepe = me.pool.pull("EnemyCreep", 3350, 0, {});
 			//pulls enemy creep class from pool
 			me.game.world.addChild(creepe, 5);
 			//inserts creep into actual game
