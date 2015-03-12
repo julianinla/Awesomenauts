@@ -29,7 +29,7 @@ game.GameTimerManager = Object.extend({
 	goldTimerCheck: function() {
 		if(Math.round(this.now/game.data.creepAttackTimer) % 20 === 0 && 
 			(this.now - this.lastCreep >= game.data.creepAttackTimer)) {
-			game.data.gold += 1; //gives gold to player
+			game.data.gold += (game.data.exp1 + 1); //gives gold to player
 		}
 		//does something if 20 sec since last
 	},

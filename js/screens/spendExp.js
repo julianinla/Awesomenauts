@@ -11,6 +11,7 @@ game.SpendExp = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.F3, "F3"); //initializes f3 key
 		me.input.bindKey(me.input.KEY.F4, "F4"); //initializes f4 key
 		me.input.bindKey(me.input.KEY.F5, "F5"); //initializes f5 key
+		var exp1cost = ((game.data.exp1 + 1) * 10);
 
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function() {
@@ -26,7 +27,7 @@ game.SpendExp = me.ScreenObject.extend({
 				this.font.draw(renderer.getContext(), "CURRENT EXP: " + game.data.exp.toString(), this.pos.x, this.pos.y + 50);
 				//draws current exp text
 				this.font.draw(renderer.getContext(), "F1: MIDAS CURRENT LEVEL: " + game.data.exp1.toString() + 
-				" COST: " + ((game.data.exp1 + 1) * 10), this.pos.x, this.pos.y + 150);
+				" COST: " + exp1cost, this.pos.x, this.pos.y + 150);
 				//draws option 1, midas ability if have enough
 				this.font.draw(renderer.getContext(), "F2: ZEPHYR CURRENT LEVEL: " + game.data.exp2.toString() +
 				" COST: " + ((game.data.exp2 + 1) * 10), this.pos.x, this.pos.y + 200);
@@ -42,7 +43,11 @@ game.SpendExp = me.ScreenObject.extend({
 
 		this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
 			if (action === "F1") {
-				//empty for now
+				if(game.data.exp >= exp1cost) {
+					game.data.exp1 += 1;
+					game.data.exp -= exp1cost;
+					me.state.change(me.state.PLAY);
+				}
 			}
 			//if you press f1
 			else if (action === "F2") {
