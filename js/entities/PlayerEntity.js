@@ -47,7 +47,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.health = game.data.playerHealth;
 		//sets health of player to 2
 		//used global var
-		this.body.setVelocity(game.data.playerMoveSpeed + (game.data.exp2 * 5), 20);
+		this.body.setVelocity(game.data.playerMoveSpeed + (game.data.exp2 * 3), 20);
 		//tells movement of player when moved
 		//changed position 0 to 20
 	},
