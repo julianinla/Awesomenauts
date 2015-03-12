@@ -16,7 +16,6 @@ game.PlayerEntity = me.Entity.extend({
 
 		this.addAnimation(); //function adds animation
 
-
 		this.renderable.setCurrentAnimation("idle");
 		//sets current animation to the idle
 	},
@@ -48,7 +47,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.health = game.data.playerHealth;
 		//sets health of player to 2
 		//used global var
-		this.body.setVelocity(game.data.playerMoveSpeed, 20);
+		this.body.setVelocity(game.data.playerMoveSpeed + (game.data.exp2 * 5), 20);
 		//tells movement of player when moved
 		//changed position 0 to 20
 	},
@@ -230,7 +229,7 @@ game.PlayerEntity = me.Entity.extend({
 		if(this.renderable.isCurrentAnimation("attack") && 
 			this.now - this.lastHit >= game.data.playerAttackTimer /* uses timing global var */ ) {
 			this.lastHit = this.now;
-			response.b.loseHealth(game.data.playerAttack);
+			response.b.loseHealth(game.data.playerAttack + (game.data.exp3 *3));
 			//causes to remove health
 			//uses global var
 		}
@@ -270,14 +269,15 @@ game.PlayerEntity = me.Entity.extend({
 
 	checkAttack: function(xdif, ydif, response) {
 		if(this.renderable.isCurrentAnimation("attack") &&
-			(this.now - this.lastHit) >= game.data.playerAttackTimer /* uses global var */ 
+			this.now - this.lastHit >= game.data.playerAttackTimer /* uses global var */ 
 			&& (Math.abs(ydif) <= 40) && 
 			(((xdif > 0) && this.facing === "left") || ((xdif < 0) && this.facing === "right"))) {
-			this.health = this.now; //makes current health health
-			response.b.loseHealth(game.data.playerAttack); //used global var
+			this.lastHit = this.now; //makes current health health
+			response.b.loseHealth(game.data.playerAttack + (game.data.exp3 *3)); //used global var
 			//lose 1 health from this
 			if(response.b.losehealth <= game.data.playerAttack) {
 				game.data.gold += 1; //give the player gold
+				console.log("Gold: " + game.data.gold);
 			}
 			//if the creep dies basically ...
 		}
@@ -291,6 +291,7 @@ game.PlayerEntity = me.Entity.extend({
 	}
 });
 //create player entity for use in game
+
 
 
 
