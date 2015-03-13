@@ -134,8 +134,10 @@ game.SpendGold = Object.extend({
 
 		this.paused = false;
 		this.updateWhenPaused = true;
+		//variables for pausing
 
 		this.buying = false;
+		//says not currently buying
 	},
 
 	update: function () {
@@ -144,13 +146,20 @@ game.SpendGold = Object.extend({
 		
 		if(me.input.isKeyPressed("buy") && this.now - this.lastBuy >= 1000) {
 			this.lastBuy = this.now;
+			//update the lastBuy timer
+
 			if(!this.buying) {
 				this.startBuying();
+				//causes you to start buying
 			}
+			//if you are not currently buying
 			else {
 				this.stopBuying();
+				//ends buying
 			}
+			//if you are buying
 		}
+		//if hit buy screen
 
 		return true;
 	},
@@ -158,20 +167,33 @@ game.SpendGold = Object.extend({
 
 	startBuying: function() {
 		this.buying = true;
+		//makes sure in right function later
 		me.state.pause(me.state.PLAY);
 		game.data.pausePos = me.game.viewport.localToWorld(0, 0);
+		//kinda says add where currently at
 		game.data.buyscreen = new Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('gold-screen'));
+		//tells game where to add buyscreen
 		game.data.buyscreen.updateWhenPaused = true;
+		//says screen updates when u pause
 		game.data.buyscreen.setOpacity(0, 8);
+		//makes the buyscreen slightly opaque
 		me.game.world.addChild(game.data.buyscreen, 34);
+		//adds the buyscreen into the game
 		game.data.player.body.setVelocity(0, 0);
+		//stops the player from being able to move while buying
 	},
+	//opens up buying screen
 
 	stopBuying: function() {
 		this.buying = false;
+		//makes sure in right function later
 		me.state.resume(me.state.PLAY);
+		//resumes the actual game
 		game.data.player.body.setVelocity(game.data.playerMoveSpeed + (game.data.exp2 * 3), 20);
+		//allows player to move again
 		me.game.world.removeChild(game.data.buyscreen);	
+		//closes out of the buyscreen
 	}
+	//stops the buying screen
 });
 //spend gold manager for handling buying stuff w/ gold
