@@ -31,8 +31,9 @@ var game = {
 		exp3: 0,
 		exp4: 0,
 		win: "",
-		pausePos: "",
+		pausePos: "", 
 		buyscreen: ""
+		//2 new random vars
 	},
 	
 	
@@ -97,6 +98,7 @@ var game = {
 		me.pool.register("ExperienceManager", game.ExperienceManager);
 		//GameManager for handling experience the player earns
 		me.pool.register("SpendGold", game.SpendGold);
+		//GameManager for handling buying stuff w/ gold
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());

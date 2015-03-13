@@ -127,7 +127,7 @@ game.SpendGold = Object.extend({
 		this.now = new Date().getTime();
 		//makes now the current date/time
 		this.lastBuy = new Date().getTime();
-		//makes lastCreep equal to the current date/time
+		//makes lastBuy equal to the current date/time
 
 		this.alwaysUpdate = true;
 		//makes it always update
@@ -138,4 +138,6 @@ game.SpendGold = Object.extend({
 	update: function () {
 		return true;
 	}
+	//update function for later
 });
+//spend gold manager for handling buying stuff w/ gold
