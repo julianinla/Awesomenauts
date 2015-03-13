@@ -121,3 +121,21 @@ game.ExperienceManager = Object.extend({
 	}
 });
 //ExperienceManager for player experience
+
+game.SpendGold = Object.extend({
+	init: function (x, y, settings) {
+		this.now = new Date().getTime();
+		//makes now the current date/time
+		this.lastBuy = new Date().getTime();
+		//makes lastCreep equal to the current date/time
+
+		this.alwaysUpdate = true;
+		//makes it always update
+
+		this.paused = false;
+	},
+
+	update: function () {
+		return true;
+	}
+});

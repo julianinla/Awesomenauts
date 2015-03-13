@@ -26,6 +26,15 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.game.world.addChild(experienceManager, 0);
 		//adds it into actual game
 
+		var spendGold = me.pool.pull("SpendGold", 0, 0, {});
+		//incorporates ExperienceManager into play.js
+		me.game.world.addChild(spendGold, 0);
+		//adds it into actual game
+
+		me.input.bindKey(me.input.KEY.B, "buy");
+		me.input.bindKey(me.input.KEY.Q, "skill1");
+		me.input.bindKey(me.input.KEY.W, "skill2");
+		me.input.bindKey(me.input.KEY.E, "skill3");
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		//binding right to be able to perform action
 		me.input.bindKey(me.input.KEY.LEFT, "left");
