@@ -133,11 +133,45 @@ game.SpendGold = Object.extend({
 		//makes it always update
 
 		this.paused = false;
+		this.updateWhenPaused = true;
+
+		this.buying = false;
 	},
 
 	update: function () {
+		this.now = new Date().getTime();
+		//makes now the current date/time
+		
+		if(me.input.isKeyPressed("buy") && this.now - this.lastBuy >= 1000) {
+			this.lastBuy = this.now;
+			if(!this.buying) {
+				this.startBuying();
+			}
+			else {
+				this.stopBuying();
+			}
+		}
+
 		return true;
-	}
+	},
 	//update function for later
+
+	startBuying: function() {
+		this.buying = true;
+		me.state.pause(me.state.PLAY);
+		game.data.pausePos = me.game.viewport.localToWorld(0, 0);
+		game.data.buyscreen = new Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('gold-screen'));
+		game.data.buyscreen.updateWhenPaused = true;
+		game.data.buyscreen.setOpacity(0, 8);
+		me.game.world.addChild(game.data.buyscreen, 34);
+		game.data.player.body.setVelocity(0, 0);
+	},
+
+	stopBuying: function() {
+		this.buying = false;
+		me.state.resume(me.state.PLAY);
+		game.data.player.body.setVelocity(game.data.playerMoveSpeed + (game.data.exp2 * 3), 20);
+		me.game.world.removeChild(game.data.buyscreen);	
+	}
 });
 //spend gold manager for handling buying stuff w/ gold
