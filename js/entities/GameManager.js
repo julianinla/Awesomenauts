@@ -250,84 +250,118 @@ game.SpendGold = Object.extend({
 		if (me.input.isKeyPressed("F1")) {
 			if(this.checkCost(1)) {
 				this.makePurchase(1);
+				//links to makePurchase to actually buy
 			}
+			//goes to checkCost function, sees if skill1 can be bought
 		}
+		//if you press F1, select skill1
 		else if (me.input.isKeyPressed("F2")) {
 			if(this.checkCost(2)) {
 				this.makePurchase(2);
+				//links to makePurchase to actually buy
 			}
+			//goes to checkCost function, sees if skill2 can be bought
 		}
+		//if you press F2, select skill2
 		else if (me.input.isKeyPressed("F3")) {
 			if(this.checkCost(3)) {
 				this.makePurchase(3);
+				//links to makePurchase to actually buy
 			}
+			//goes to checkCost function, sees if skill3 can be bought
 		}
+		//if you press F3, select skill3
 		else if (me.input.isKeyPressed("F4")) {
 			if(this.checkCost(4)) {
 				this.makePurchase(4);
+				//links to makePurchase to actually buy
 			}
+			//goes to checkCost function, sees if ability1 can be bought
 		}
+		//if you press F4, select ability1
 		else if (me.input.isKeyPressed("F5")) {
 			if(this.checkCost(5)) {
 				this.makePurchase(5);
+				//links to makePurchase to actually buy
 			}
+			//goes to checkCost function, sees if ability2 can be bought
 		}
+		//if you press F5, select ability2
 		else if (me.input.isKeyPressed("F6")) {
 			if(this.checkCost(6)) {
 				this.makePurchase(6);
+				//links to makePurchase to actually buy
 			}
+			//goes to checkCost function, sees if ability3 can be bought
 		}
+		//if you press F6, select ability3
 	},
+	//determines which thing you wanna buy
 
 	checkCost: function(skill) {
 		if (skill === 1 && (game.data.gold >= ((game.data.skill1 + 1) * 10))) {
-			return true;
+			return true; //says you can buy skill1
 		}
+		//checks if you can buy skill1
 		if (skill === 2 && (game.data.gold >= ((game.data.skill2 + 1) * 10))) {
-			return true;
+			return true; //says you can buy skill2
 		}
+		//checks if you can buy skill2
 		if (skill === 3 && (game.data.gold >= ((game.data.skill3 + 1) * 10))) {
-			return true;
+			return true; //says you can buy skill3
 		}
+		//checks if you can buy skill3
 		if (skill === 4 && (game.data.gold >= ((game.data.ability1 + 1) * 10))) {
-			return true;
+			return true; //says you can buy ability2
 		}
+		//checks if you can buy ability1
 		if (skill === 5 && (game.data.gold >= ((game.data.ability2 + 1) * 10))) {
-			return true;
+			return true; //says you can buy ability2
 		}
+		//checks if you can buy ability1
 		if (skill === 6 && (game.data.gold >= ((game.data.ability3 + 1) * 10))) {
-			return true;
+			return true; //says you can buy ability3
 		}
+		//checks if you can buy ability3
 		else {
-			return false;
-		}
+			return false; //returns false
+		} 
+		//otherwise dont do anything
 	},
+	//function checks cost of item, if you have enough gold to buy it
 
 	makePurchase: function(skill) {
 		if (skill === 1) {
-			game.data.gold -= ((game.data.skill1 + 1) * 10);
-			game.data.skill1 += 1;
-		}
+			game.data.gold -= ((game.data.skill1 + 1) * 10); //takes gold away when purchase 
+			game.data.skill1 += 1; //increases level of skill1
+		} 
+		//purchase for skill1
 		else if (skill === 2) {
-			game.data.gold -= ((game.data.skill2 + 1) * 10);
-			game.data.skill2 += 1;
-		}
+			game.data.gold -= ((game.data.skill2 + 1) * 10); //takes gold away when purchase 
+			game.data.skill2 += 1; //increases level of skill2 
+		} 
+		//purchase for skill2
 		else if (skill === 3) {
-			game.data.gold -= ((game.data.skill3 + 1) * 10);
-			game.data.skill3 += 1;
+			game.data.gold -= ((game.data.skill3 + 1) * 10); //takes gold away when purchase 
+			game.data.skill3 += 1; //increases level of skill3 
 		}
+		//purchase for skill3
 		else if (skill === 4) {
-			game.data.gold -= ((game.data.ability1 + 1) * 10);
-			game.data.ability1 += 1;
+			game.data.gold -= ((game.data.ability1 + 1) * 10); //takes gold away when purchase 
+			game.data.ability1 += 1; //increases level of ability1 
 		}
+		//purchase for skill4
 		else if (skill === 5) {
-			game.data.gold -= ((game.data.ability2 + 1) * 10);
-			game.data.ability2 += 1;
+			game.data.gold -= ((game.data.ability2 + 1) * 10); //takes gold away when purchase 
+			game.data.ability2 += 1; //increases level of ability2
 		}
+		//purchase for skill5
 		else if (skill === 6) {
-			game.data.gold -= ((game.data.ability3 + 1) * 10);
-			game.data.ability3 += 1;
+			game.data.gold -= ((game.data.ability3 + 1) * 10); //takes gold away when purchase 
+			game.data.ability3 += 1; //increases level of ability3 
 		}
-	}
+		//purchase for skill6
+	} 
+	//function for making purchases in buyscreen
 });
 //spend gold manager for handling buying stuff w/ gold
