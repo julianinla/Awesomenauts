@@ -187,7 +187,9 @@ game.SpendGold = Object.extend({
 		me.input.bindKey(me.input.KEY.F4, "F4", true);
 		me.input.bindKey(me.input.KEY.F5, "F5", true);
 		me.input.bindKey(me.input.KEY.F6, "F6", true);
+		//key binds for buyscreen
 		this.setBuyText();
+		//calls function that adds text for buyscreen
 	},
 	//opens up buying screen
 
@@ -195,22 +197,24 @@ game.SpendGold = Object.extend({
 		game.data.buytext = new (me.Renderable.extend({
 			init: function() {
 				this._super(me.Renderable, 'init', [game.data.pausePos.x, game.data.pausePos.y, 300, 50]);
-				//basic settings for the title screen
+				//basic settings for the buyscreen
 				this.font = new me.Font("Arial", 26, "white");
-				//font used in title
+				//font used in buyscreen 
 				this.updateWhenPaused = true;
 				this.alwaysUpdate = true;
+				//pause vars again
 			},
 
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B TO EXIT", this.pos.x, this.pos.y);
-				//draw spend exp screen, gives command options
+				//draw spend gold screen, gives command options
 			},
 			//used as main function to draw on screen
 		}));
-		//renderable starting new game
+		//renderable opneing buyscreen 
 
 		me.game.world.addChild(game.data.buytext, 35);
+		//adds draw for buyscreen text
 	},
 
 	stopBuying: function() {
@@ -227,8 +231,10 @@ game.SpendGold = Object.extend({
 		me.input.unbindKey(me.input.KEY.F3, "F3", true);
 		me.input.unbindKey(me.input.KEY.F4, "F4", true);
 		me.input.unbindKey(me.input.KEY.F5, "F5", true);
-		me.input.unbindKey(me.input.KEY.F6, "F6", true);
+		me.input.unbindKey(me.input.KEY.F6, "F6", true);ee
+		//removes key binds for buyscreen
 		me.game.world.removeChild(game.data.buytext);
+		//removes text after close buyscreen
 	}
 	//stops the buying screen
 });
