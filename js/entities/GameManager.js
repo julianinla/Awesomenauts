@@ -208,12 +208,12 @@ game.SpendGold = Object.extend({
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B TO EXIT, CURRENT GOLD: " + game.data.gold, this.pos.x, this.pos.y);
 				//draw spend gold screen, gives command options
-				this.font.draw(renderer.getContext(), "SKILL 1: CURRENT LEVEL: " + game.data.skill1 + " COSTS: " + ((game.data.skill1 + 10) * 10), this.pos.x, this.pos.y + 40);
-				this.font.draw(renderer.getContext(), "SKILL 2: CURRENT LEVEL: " + game.data.skill2 + " COSTS: " + ((game.data.skill2 + 10) * 10), this.pos.x, this.pos.y + 80);
-				this.font.draw(renderer.getContext(), "SKILL 3: CURRENT LEVEL: " + game.data.skill3 + " COSTS: " + ((game.data.skill3 + 10) * 10), this.pos.x, this.pos.y + 120);
-				this.font.draw(renderer.getContext(), "Q ABILITY: CURRENT LEVEL: " + game.data.ability1 + " COSTS: " + ((game.data.ability1 + 10) * 10), this.pos.x, this.pos.y + 160);
-				this.font.draw(renderer.getContext(), "W ABILITY: CURRENT LEVEL: " + game.data.ability2 + " COSTS: " + ((game.data.ability2 + 10) * 10), this.pos.x, this.pos.y + 200);
-				this.font.draw(renderer.getContext(), "E ABILITY: CURRENT LEVEL: " + game.data.ability3 + " COSTS: " + ((game.data.ability3 + 10) * 10), this.pos.x, this.pos.y + 240);
+				this.font.draw(renderer.getContext(), "SKILL 1: CURRENT LEVEL: " + game.data.skill1 + " COSTS: " + ((game.data.skill1 + 10) * 10), this.pos.x, this.pos.y + 40); //skill1 in buyscreen
+				this.font.draw(renderer.getContext(), "SKILL 2: CURRENT LEVEL: " + game.data.skill2 + " COSTS: " + ((game.data.skill2 + 10) * 10), this.pos.x, this.pos.y + 80); //skill2 in buyscreen
+				this.font.draw(renderer.getContext(), "SKILL 3: CURRENT LEVEL: " + game.data.skill3 + " COSTS: " + ((game.data.skill3 + 10) * 10), this.pos.x, this.pos.y + 120); //skill3 in buyscreen
+				this.font.draw(renderer.getContext(), "Q ABILITY: CURRENT LEVEL: " + game.data.ability1 + " COSTS: " + ((game.data.ability1 + 10) * 10), this.pos.x, this.pos.y + 160); //ability1 in buyscreen
+				this.font.draw(renderer.getContext(), "W ABILITY: CURRENT LEVEL: " + game.data.ability2 + " COSTS: " + ((game.data.ability2 + 10) * 10), this.pos.x, this.pos.y + 200); //ability2 in buyscreen
+				this.font.draw(renderer.getContext(), "E ABILITY: CURRENT LEVEL: " + game.data.ability3 + " COSTS: " + ((game.data.ability3 + 10) * 10), this.pos.x, this.pos.y + 240); //ability3 in buyscreen
 			},
 			//used as main function to draw on screen
 		}));
