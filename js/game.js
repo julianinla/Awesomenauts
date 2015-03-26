@@ -25,6 +25,12 @@ var game = {
 		player: "",
 		exp: 0, //experience var number
 		gold: 0, //number of gold player has
+		skill1: 0,
+		skill2: 0,
+		skill3: 0,
+		ability1: 0,
+		ability2: 0,
+		ability3: 0,
 		//different options for use of experience below
 		exp1: 0, 
 		exp2: 0,
