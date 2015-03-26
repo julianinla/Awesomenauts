@@ -170,19 +170,48 @@ game.SpendGold = Object.extend({
 		//makes sure in right function later
 		me.state.pause(me.state.PLAY);
 		game.data.pausePos = me.game.viewport.localToWorld(0, 0);
-		//kinda says add where currently at
-		game.data.buyscreen = new Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('gold-screen'));
+		//kinda says add where currently
+		game.data.buyscreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('gold-screen'));
 		//tells game where to add buyscreen
 		game.data.buyscreen.updateWhenPaused = true;
 		//says screen updates when u pause
-		game.data.buyscreen.setOpacity(0, 8);
+		game.data.buyscreen.setOpacity(0.8);
 		//makes the buyscreen slightly opaque
 		me.game.world.addChild(game.data.buyscreen, 34);
 		//adds the buyscreen into the game
 		game.data.player.body.setVelocity(0, 0);
 		//stops the player from being able to move while buying
+		me.input.bindKey(me.input.KEY.F1, "F1", true);
+		me.input.bindKey(me.input.KEY.F2, "F2", true);
+		me.input.bindKey(me.input.KEY.F3, "F3", true);
+		me.input.bindKey(me.input.KEY.F4, "F4", true);
+		me.input.bindKey(me.input.KEY.F5, "F5", true);
+		me.input.bindKey(me.input.KEY.F6, "F6", true);
+		this.setBuyText();
 	},
 	//opens up buying screen
+
+	setBuyText: function() {
+		game.data.buytext = new (me.Renderable.extend({
+			init: function() {
+				this._super(me.Renderable, 'init', [game.data.pausePos.x, game.data.pausePos.y, 300, 50]);
+				//basic settings for the title screen
+				this.font = new me.Font("Arial", 26, "white");
+				//font used in title
+				this.updateWhenPaused = true;
+				this.alwaysUpdate = true;
+			},
+
+			draw: function(renderer) {
+				this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B TO EXIT", this.pos.x, this.pos.y);
+				//draw spend exp screen, gives command options
+			},
+			//used as main function to draw on screen
+		}));
+		//renderable starting new game
+
+		me.game.world.addChild(game.data.buytext, 35);
+	},
 
 	stopBuying: function() {
 		this.buying = false;
@@ -193,6 +222,13 @@ game.SpendGold = Object.extend({
 		//allows player to move again
 		me.game.world.removeChild(game.data.buyscreen);	
 		//closes out of the buyscreen
+		me.input.unbindKey(me.input.KEY.F1, "F1", true);
+		me.input.unbindKey(me.input.KEY.F2, "F2", true);
+		me.input.unbindKey(me.input.KEY.F3, "F3", true);
+		me.input.unbindKey(me.input.KEY.F4, "F4", true);
+		me.input.unbindKey(me.input.KEY.F5, "F5", true);
+		me.input.unbindKey(me.input.KEY.F6, "F6", true);
+		me.game.world.removeChild(game.data.buytext);
 	}
 	//stops the buying screen
 });

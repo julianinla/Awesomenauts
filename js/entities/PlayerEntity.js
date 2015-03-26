@@ -229,7 +229,7 @@ game.PlayerEntity = me.Entity.extend({
 		if(this.renderable.isCurrentAnimation("attack") && 
 			this.now - this.lastHit >= game.data.playerAttackTimer /* uses timing global var */ ) {
 			this.lastHit = this.now;
-			response.b.loseHealth(game.data.playerAttack + (game.data.exp3 *3));
+			response.b.loseHealth(game.data.playerAttack + (game.data.exp3 * 5));
 			//causes to remove health
 			//uses global var
 		}

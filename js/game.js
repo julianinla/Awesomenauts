@@ -8,7 +8,7 @@ var game = {
 		score : 0,
 		enemyBaseHealth: 10, //global var for enemy base health 
 		playerBaseHealth: 10, //global var for player base health 
-		enemyCreepHealth: 10, //global var for creep health
+		enemyCreepHealth: 5, //global var for creep health
 		playerHealth: 20, //global var for players health
 		gloopHealth: 10, //global var for teammate health
 		enemyCreepAttack: 1, //damage for creeps attack
@@ -32,8 +32,9 @@ var game = {
 		exp4: 0,
 		win: "",
 		pausePos: "", 
-		buyscreen: ""
+		buyscreen: "",
 		//2 new random vars
+		buytext: ""
 	},
 	
 	
