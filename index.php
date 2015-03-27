@@ -28,6 +28,10 @@
 		<script type="text/javascript" src="js/resources.js"></script>
 
 		<script type="text/javascript" src="js/entities/GameManager.js"></script>
+		<script type="text/javascript" src="js/entities/GameTimerManager.js"></script>
+		<script type="text/javascript" src="js/entities/HeroDeathManager.js"></script>
+		<script type="text/javascript" src="js/entities/ExperienceManager.js"></script>
+		<script type="text/javascript" src="js/entities/SpendGold.js"></script>
 		<script type="text/javascript" src="js/entities/JumpTrigger.js"></script>
 		<script type="text/javascript" src="js/entities/PlayerEntity.js"></script>
 		<script type="text/javascript" src="js/entities/GloopTeammate.js"></script>
