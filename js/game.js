@@ -72,7 +72,9 @@ var game = {
 	me.state.SPENDEXP = 112;
 	//gives number value to spendexp
 	me.state.LOAD = 113;
+	//gives number value to load
 	me.state.NEW = 114;
+	//gives number value to load
 
 	// Initialize the audio.
 	me.audio.init("mp3,ogg");
@@ -110,11 +112,11 @@ var game = {
 		me.pool.register("SpendGold", game.SpendGold);
 		//GameManager for handling buying stuff w/ gold
 
-		me.state.set(me.state.MENU, new game.TitleScreen());
-		me.state.set(me.state.PLAY, new game.PlayScreen());
-		me.state.set(me.state.SPENDEXP, new game.SpendExp());
-		me.state.set(me.state.LOAD, new game.LoadProfile());
-		me.state.set(me.state.NEW, new game.NewProfile());
+		me.state.set(me.state.MENU, new game.TitleScreen()); //gives info for menu state
+		me.state.set(me.state.PLAY, new game.PlayScreen()); //gives info for play state
+		me.state.set(me.state.SPENDEXP, new game.SpendExp()); //gives info for spend exp state
+		me.state.set(me.state.LOAD, new game.LoadProfile()); //gives info for load profile state
+		me.state.set(me.state.NEW, new game.NewProfile()); //gives info for new profile state
 
 		// Start the game.
 		me.state.change(me.state.MENU);

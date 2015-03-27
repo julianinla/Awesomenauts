@@ -13,8 +13,8 @@ game.resources = [
 	{name: "title-screen", type:"image", src: "data/img/title.png"}, //resource that load title screen img
 	{name: "exp-screen", type:"image", src: "data/img/loadpic.png"}, //resource that loads exp screen pic
 	{name: "gold-screen", type:"image", src: "data/img/spend.png"}, //resource that loads exp screen pic
-	{name: "load-screen", type:"image", src: "data/img/loadpic.png"},
-	{name: "new-screen", type:"image", src: "data/img/newpic.png"},
+	{name: "load-screen", type:"image", src: "data/img/loadpic.png"}, //resource that loads exp screen pic, but for continue
+	{name: "new-screen", type:"image", src: "data/img/newpic.png"}, // resource loads pic for new profile
 
 	/* Atlases 
 	 * @example

@@ -30,7 +30,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.input.releasePointerEvent('pointerdown', this);
 				//gets rid of pointerfunction
 				me.state.change(me.state.NEW);
-				//starts the game
+				//loads screen for creating new account
 			}
 		})));
 		//renderable starting new game
@@ -59,7 +59,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.input.releasePointerEvent('pointerdown', this);
 				//gets rid of pointerfunction
 				me.state.change(me.state.LOAD);
-				//loads spend exp screen
+				//loads load profile screen
 			}
 		})));
 		//renderable for continuing game

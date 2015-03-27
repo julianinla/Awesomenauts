@@ -4,13 +4,13 @@ game.LoadProfile = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {	
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('load-screen')), -10); 
-		//added a exp screen image that needs to load
+		//added a load profile screen image that needs to load
 
-		me.input.unbindKey(me.input.KEY.B); //initializes f1 key
-		me.input.unbindKey(me.input.KEY.Q); //initializes f2 key
-		me.input.unbindKey(me.input.KEY.W); //initializes f3 key
-		me.input.unbindKey(me.input.KEY.E); //initializes f5 key
-		me.input.unbindKey(me.input.KEY.A); //initializes f5 key
+		me.input.unbindKey(me.input.KEY.B); //unbinds the b key
+		me.input.unbindKey(me.input.KEY.Q); //unbinds the q key
+		me.input.unbindKey(me.input.KEY.W); //unbinds the w key
+		me.input.unbindKey(me.input.KEY.E); //unbinds the e key
+		me.input.unbindKey(me.input.KEY.A); //unbinds the a key
 
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function() {
@@ -22,11 +22,11 @@ game.LoadProfile = me.ScreenObject.extend({
 
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "ENTER USERNAME/PASSWORD", this.pos.x, this.pos.y);
-				//draw spend exp screen, gives command options
+				//text prompts user to enter in username/password
 			},
 			//used as main function to draw on screen
 		})));
-		//renderable starting new game
+		//renderable continuing old game
 	},
 	
 	
@@ -34,5 +34,6 @@ game.LoadProfile = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
+		//placeholder
 	}
 });
