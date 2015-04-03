@@ -6,8 +6,8 @@ game.LoadProfile = me.ScreenObject.extend({
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('load-screen')), -10); 
 		//added a load profile screen image that needs to load
 
-		document.getElementById("input").style.visibility = "visible";
-		document.getElementById("load").style.visibility = "visible";
+		document.getElementById("input").style.visibility = "visible"; //makes accounts form visible
+		document.getElementById("load").style.visibility = "visible"; //makes load game button visible
 
 		me.input.unbindKey(me.input.KEY.B); //unbinds the b key
 		me.input.unbindKey(me.input.KEY.Q); //unbinds the q key
@@ -37,7 +37,7 @@ game.LoadProfile = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
-		document.getElementById("input").style.visibility = "hidden";
-		document.getElementById("load").style.visibility = "hidden";
+		document.getElementById("input").style.visibility = "hidden"; //hides accounts form
+		document.getElementById("load").style.visibility = "hidden"; //hides load game button
 	}
 });

@@ -21,17 +21,19 @@
 				<label for="username"> Username </label>
 				<input type="text" name="username" id="username" autocomplete="off"> 
 			</div>
+			<!-- contains field for username input -->
 
 			<div class="password">
 				<label for="password"> Password </label>
 				<input type="text" name="password" id="password"> 
 			</div>
+			<!-- contains field for password input -->
 
-			<button type="button" id="register"> Register </button>
+			<button type="button" id="register"> Register
 			<button type="button" id="load"> Load </button>
 			<button type="button" id="mainmenu"> Main Menu </button>
 		</form>
-		
+		<!-- form for signing into account for game -->
 
 		<!-- melonJS Library -->
 		<!-- build:js js/app.min.js -->

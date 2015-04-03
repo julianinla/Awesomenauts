@@ -5,8 +5,8 @@ game.NewProfile = me.ScreenObject.extend({
 	onResetEvent: function() {	
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('new-screen')), -10); 
 		//added a new profile screen image that needs to load
-		document.getElementById("input").style.visibility = "visible";
-		document.getElementById("register").style.visibility = "visible";
+		document.getElementById("input").style.visibility = "visible"; //makes input form visible
+		document.getElementById("register").style.visibility = "visible"; //makes the account register button visible
 
 		me.input.unbindKey(me.input.KEY.B); //unbinds the b key
 		me.input.unbindKey(me.input.KEY.Q); //unbinds the q key
@@ -36,7 +36,7 @@ game.NewProfile = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
-		document.getElementById("input").style.visibility = "hidden";
-		document.getElementById("register").style.visibility = "hidden";
+		document.getElementById("input").style.visibility = "hidden"; //hides input form
+		document.getElementById("register").style.visibility = "hidden"; //hides register button
 	}
 });
