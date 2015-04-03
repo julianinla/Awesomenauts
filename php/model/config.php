@@ -7,13 +7,13 @@
 	session_regenerate_id(true);
 
 	$path = "/Awesomenauts/php";
-	//used for fixing path for future changes
+	//used for fixing path for future changes changed
 
 	//former db code
 	$host = "localhost"; //local host variables
 	$username = "root"; //username variable
 	$password = "root"; //password variables
-	$database = "awesomenauts_db"; //database variable
+	$database = "awesomenauts_db"; //database variable changed
 	//initalizing required variables for database
 
 	if(!isset($_SESSION["connection"])) { /* want to determine if var has value */

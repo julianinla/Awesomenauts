@@ -9,6 +9,7 @@
 		'exp3'=> '',
 		'exp4'=> '',
 	];
+	//array that has all the exp
 
 	$username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 	$password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
@@ -26,8 +27,9 @@
 			$array["exp2"] = $row["exp2"];
 			$array["exp3"] = $row["exp3"];
 			$array["exp4"] = $row["exp4"];
+			//stores all of the exp arrays
 
-			echo json_encode($array);
+			echo json_encode($array); //?
 		}
 		else {
 			echo "Invalid username or password :(";
