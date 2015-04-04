@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <?php 
 	require_once("php/controller/create-db.php");
+	//needs to load database before game
 ?>
 
 <html>
@@ -103,6 +104,7 @@
 			$("#mainmenu").bind("click", function(){
 				me.state.change(me.state.MENU);
 			});
+			//when you click main menu, links back to that menu
 			$("#register").bind("click", function(){
 				$.ajax({
 					type: "POST",
@@ -125,6 +127,7 @@
 					alert("fail");
 				});
 			});
+			//when you register ...
 
 		</script>
 	</body>
