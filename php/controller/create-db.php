@@ -19,13 +19,4 @@
 	//used for creating table 
 	//stores created users
 
-	if($query){
-		echo "<p>Successfully created table: users</p>";
-	}
-	else {
-		echo "<p" . $_SESSION["connection"]->error . "</p>";
-	}
-	//check if query exists, echo message
-	//else give different message
-
 ?>
