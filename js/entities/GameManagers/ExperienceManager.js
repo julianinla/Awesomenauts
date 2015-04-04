@@ -11,11 +11,13 @@ game.ExperienceManager = Object.extend({
 		if (game.data.win === true && !this.gameover) {
 			this.gameOver(true);
 			//passes in false, tells game you won
+			alert("YOU WIN!");
 		}
 		//if the player wins and game is over
 		else if (game.data.win === false && !this.gameover) {
 			this.gameOver(false);
 			//passes in false, tells gmae you lost
+			alert("YOU LOSE!");
 		}
 		//if the player loses and game is over
 
@@ -38,6 +40,34 @@ game.ExperienceManager = Object.extend({
 		//sets gameOver to true
 		me.save.exp = game.data.exp;
 		//saves your exp in melonjs
+
+			$.ajax({
+				type: "POST", //type post?
+				url: "php/controller/save-user.php", //url for creating users
+				data: {
+					exp: game.data.exp,
+					exp1: game.data.exp1,
+					exp2: game.data.exp2,
+					exp3: game.data.exp3,
+					exp4: game.data.exp4,
+				},
+				//sets username and password to entered info
+				dataType: "text"
+			})
+			.success(function(response) {
+				if(response === "true") {
+					me.state.change(me.state.PLAY);
+					//start game
+				}
+				else {
+					alert(response);
+				}
+			})
+			//if successful 
+			.fail(function(response) {
+				alert("fail");
+			});
+			//if if fails say so
 	}
 });
 //ExperienceManager for player experience
