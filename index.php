@@ -113,25 +113,29 @@
 				
 				$("#register").bind("click", function(){
 					$.ajax({
-						type: "POST",
-						url: "php/controller/create-user.php",
+						type: "POST", //type post?
+						url: "php/controller/create-user.php", //url for creating users
 						data: {
 							username: $('#username').val(),
 							password: $('#password').val()
 						},
+						//sets username and password to entered info
 						dataType: "text"
 					})
 					.success(function(response) {
 						if(response === "true") {
 							me.state.change(me.state.PLAY);
+							//start game
 						}
 						else {
 							alert(response);
 						}
 					})
+					//if successful 
 					.fail(function(response) {
 						alert("fail");
 					});
+					//if if fails say so
 				});
 				//when you register ...
 				$("#load").bind("click", function(){
@@ -157,10 +161,14 @@
 							game.data.exp4 = data["exp4"];
 							me.state.change(me.state.SPENDEXP);
 						}
+						//gives values for the exp vars
+						//goes to spendexp screen
 					})
+					//if unsuccessful
 					.fail(function(response) {
 						alert("fail");
 					});
+					//if it fails say so
 				});
 				//when you register ...
 		});
