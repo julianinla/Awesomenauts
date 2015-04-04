@@ -30,6 +30,7 @@
 			//stores all of the exp arrays
 
 			$_SESSION["name"] = $username;
+			//set session name here
 
 			echo json_encode($array); //?
 		}
