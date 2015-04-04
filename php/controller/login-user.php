@@ -29,6 +29,8 @@
 			$array["exp4"] = $row["exp4"];
 			//stores all of the exp arrays
 
+			$_SESSION["name"] = $username;
+
 			echo json_encode($array); //?
 		}
 		else {

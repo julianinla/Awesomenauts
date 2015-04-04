@@ -28,7 +28,7 @@
 	);
 	//connection as we have done
 
-	$_SESSION["name"] = $username;
+	
 
 	if($query){
 		echo "true";
