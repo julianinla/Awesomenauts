@@ -11,10 +11,11 @@ game.MiniPlayerLocation = me.Entity.extend({
 		this.settings.spriteheight = this.diameter;
 		this.floating = true;
 		this.image = me.video.createCanvas(this.settings.width, this.settings.height);
+
 		var ctx = me.video.renderer.getContext2d(this.image);
 
-		ctx.fillStyle = "rgba(0, 192, 32, 0.75)";
-		ctx.strokeStyle = "blue";
+		ctx.fillStyle = "rgba(0, 156, 26, 0.75)";
+		ctx.strokeStyle = "black";
 		ctx.lineWidth = 2;
 
 		ctx.arc(this.r + 2, this.r + 2, this.r, 0, Math.PI * 2);
@@ -25,8 +26,8 @@ game.MiniPlayerLocation = me.Entity.extend({
 		this._super(me.Entity, "init", [x, y, {
 			width: 14,
 			height: 14,
-			spriteheight: 14,
-			spriteheight: 14,
+			spritewidth: "14",
+			spriteheight: "14",
 			getShape: function() {
 				return(new me.Rect(0, 0, 14, 14)).toPolygon();
 			}
@@ -44,8 +45,8 @@ game.MiniPlayerLocation = me.Entity.extend({
 	},
 
 	update: function() {
-		this.pos.x = (10 + (game.data.player.pos.x * 0.12));
-		this.pos.y = (10 + (game.data.player.pos.y * 0.12));
+		this.pos.x = (10 + (game.data.player.pos.x * 0.11));
+		this.pos.y = (10 + (game.data.player.pos.y * 0.11));
 		return true;
 	}
 });

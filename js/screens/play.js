@@ -5,11 +5,7 @@ game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent: function() {
 		// reset the score
 		game.data.score = 0;
-
 		me.levelDirector.loadLevel("level2"); //loading the map
-
-		this.resetPlayer(0, 420);
-		//reset or respawn the player
 
 		var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
 		//incorporates GameTimerManager into play.js
@@ -36,6 +32,8 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.game.world.addChild(game.data.minimap, 30);
 		//adds minimap to the "world"
 
+		this.resetPlayer(0, 10);
+		//reset or respawn the player
 		me.input.bindKey(me.input.KEY.B, "buy");
 		//binds b to buy stuff in spend gold
 		me.input.bindKey(me.input.KEY.Q, "skill1");
@@ -71,7 +69,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		//player recreate from game.js
 		me.game.world.addChild(game.data.player, 7); 
 		//adding into "world"
-		game.data.player = me.pool.pull("miniplayer", 10, 10, {}); 
+		game.data.miniPlayer = me.pool.pull("miniplayer", 10, 10, {}); 
 		//player recreate from game.js
 		me.game.world.addChild(game.data.miniPlayer, 31); 
 		//adding into "world"
