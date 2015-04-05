@@ -16,7 +16,6 @@
 	//encrypting the password/salt
 
 	$query = $_SESSION["connection"]->query("INSERT INTO users SET "
-	. "email = '$email', "
 	. "username = '$username', " 
 	. "password = '$hashedPassword', "
 	. "salt = '$salt', "
@@ -24,14 +23,15 @@
 	. "exp1 = 0, "
 	. "exp2 = 0, "
 	. "exp3 = 0, "
-	. "exp4 = 0, " 
+	. "exp4 = 0" 
 	);
 	//connection as we have done
 
 	$_SESSION["name"] = $username;
 
 	if($query){
-		echo "true";
+	//need this for Ajax on index.php
+		echo false; //doesn't work if we test on the "true" string, so we're testing on boolean false
 	}
 	else {
 		echo "<p>" . $_SESSION["connection"]->error . "</p>";

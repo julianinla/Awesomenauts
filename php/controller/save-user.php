@@ -1,7 +1,7 @@
 <?php 
 
 	require_once(__DIR__ . "/../model/config.php");
-	//tells where we are
+	// __DIR__ tells where we are, statement tells to use config file
 
 	$exp = filter_input(INPUT_POST, "exp", FILTER_SANITIZE_STRING);
 	$exp1 = filter_input(INPUT_POST, "exp1", FILTER_SANITIZE_STRING);
@@ -10,15 +10,15 @@
 	$exp4 = filter_input(INPUT_POST, "exp4", FILTER_SANITIZE_STRING);
 	//exp vars passed from game to here
 
-	$query = $_SESSION["connection"]->query("UPDATE USERS SET "
+	$query = $_SESSION["connection"]->query("UPDATE users SET "
 		. "exp = $exp, "
 		. "exp1 = $exp1, "
 		. "exp2 = $exp2, "
 		. "exp3 = $exp3, "
-		. "exp4 = $exp4 WHERE username = \"" . $_SESSION["name"] . "\" " ); 
+		. "exp4 = $exp4 WHERE username = \"" . $_SESSION["name"] . "\""); 
 	//user table is updated on user account
 
-	if(query) {
+	if($query) {
 		echo "true";
 	} //if successful echo true
 	else {

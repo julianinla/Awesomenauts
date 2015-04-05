@@ -101,44 +101,41 @@
 			});
 		</script>
 
-
 		<script type="text/javascript">
 
-			$(window).load(function(){
-
-				$('#mainmenu').bind('click', function(){
-					me.state.change(me.state.MENU);
-				});
-
-				//when you click main menu, links back to that menu
+			$("#mainmenu").bind("click", function(){
+				me.state.change(me.state.MENU);
+			});
+			//when you click main menu, links back to that menu
 				
-				$("#register").bind("click", function(){
-					$.ajax({
-						type: "POST", //type post?
-						url: "php/controller/create-user.php", //url for creating users
-						data: {
-							username: $('#username').val(),
-							password: $('#password').val()
-						},
-						//sets username and password to entered info
-						dataType: "text"
-					})
+			$("#register").bind("click", function(){
+				$.ajax({
+					type: "POST", //type post?
+					url: "php/controller/create-user.php", //url for creating users
+					data: {
+						username: $('#username').val(),
+						password: $('#password').val()
+					},
+					//sets username and password values from input fields to entered info
+					dataType: "text"
+				})
 					.success(function(response) {
-						if(response === "true") {
-							me.state.change(me.state.PLAY);
-							//start game
-						}
-						else {
+						if(response == false) {  //doesn't work if we test on the "true" string, so we're testing on boolean false
+							me.state.change(me.state.PLAY); //start game
+						} else {
 							alert(response);
 						}
 					})
-					//if successful 
+					//if successful
+					
 					.fail(function(response) {
 						alert("fail");
 					});
 					//if if fails say so
 				});
 				//when you register ...
+				//
+				
 				$("#load").bind("click", function(){
 					$.ajax({
 						type: "POST",
@@ -150,7 +147,7 @@
 						dataType: "text"
 					})
 					.success(function(response) {
-						if(response === "Invalid username and password") {
+						if(response === "Invalid username and password" ) { 
 							alert(response);
 						}
 						else {
@@ -172,7 +169,7 @@
 					//if it fails say so
 				});
 				//when you register ...
-		});
+
 
 		</script>
 
