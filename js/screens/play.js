@@ -67,9 +67,13 @@ game.PlayScreen = me.ScreenObject.extend({
 	},
 
 	resetPlayer: function(x, y) {
-		game.data.player = me.pool.pull("player", 0, 420, {}); 
+		game.data.player = me.pool.pull("player", x, y, {}); 
 		//player recreate from game.js
-		me.game.world.addChild(game.data.player, 5); 
+		me.game.world.addChild(game.data.player, 7); 
+		//adding into "world"
+		game.data.player = me.pool.pull("miniplayer", 10, 10, {}); 
+		//player recreate from game.js
+		me.game.world.addChild(game.data.miniPlayer, 31); 
 		//adding into "world"
 	}
 	//reset player function
