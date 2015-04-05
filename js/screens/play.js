@@ -32,7 +32,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		//adds it into actual game
 
 		game.data.minimap = me.pool.pull("minimap", 10, 10, {});
+		//adds minimap entity into the pool from game.js
 		me.game.world.addChild(game.data.minimap, 30);
+		//adds minimap to the "world"
 
 		me.input.bindKey(me.input.KEY.B, "buy");
 		//binds b to buy stuff in spend gold

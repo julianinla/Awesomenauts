@@ -45,7 +45,7 @@ var game = {
 		buyscreen: "",
 		//2 new random vars
 		buytext: "",
-		minimap: ""
+		minimap: "" //empty minimap global var
 	},
 	
 	
@@ -109,6 +109,7 @@ var game = {
 		me.pool.register("spear", game.SpearThrow, true);
 		//adds spear entity into entity pool
 		me.pool.register("minimap", game.MiniMap, true);
+		//registers minimap in entity pool
 
 		me.state.set(me.state.MENU, new game.TitleScreen()); //gives info for menu state
 		me.state.set(me.state.PLAY, new game.PlayScreen()); //gives info for play state
