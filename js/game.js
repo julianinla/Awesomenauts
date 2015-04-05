@@ -24,7 +24,7 @@ var game = {
 		gloopMoveSpeed: 5, //speed of creep
 		gameTimerManager: "", //global var game manager
 		heroDeathManager: "", //global var death manager
-		spearTimer: 15,
+		spearTimer: 15000,
 		player: "",
 		exp: 0, //experience var number
 		gold: 0, //number of gold player has

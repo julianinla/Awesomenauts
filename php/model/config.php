@@ -17,6 +17,8 @@
 	//initalizing required variables for database
 
 	if(!isset($_SESSION["connection"])) { /* want to determine if var has value */
+		echo "sessionstart";
+		
 		//need to create new database object based on class
 		$connection = new Database($host, $username, $password, $database);
 		//passing variables
@@ -26,4 +28,4 @@
 		//assigning connection var to session var
 	}
 
-	?>
+?>

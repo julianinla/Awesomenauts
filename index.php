@@ -102,11 +102,9 @@
 		</script>
 
 
-		<script type="text/javascript">
+		<script>
 
-			$(window).load(function(){
-
-				$('#mainmenu').bind('click', function(){
+				$('#mainmenu').bind("click", function(){
 					me.state.change(me.state.MENU);
 				});
 
@@ -124,7 +122,7 @@
 						dataType: "text"
 					})
 					.success(function(response) {
-						if(response === "true") {
+						if(response == false) {
 							me.state.change(me.state.PLAY);
 							//start game
 						}
@@ -172,7 +170,6 @@
 					//if it fails say so
 				});
 				//when you register ...
-		});
 
 		</script>
 

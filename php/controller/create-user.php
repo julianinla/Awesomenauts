@@ -16,7 +16,6 @@
 	//encrypting the password/salt
 
 	$query = $_SESSION["connection"]->query("INSERT INTO users SET "
-	. "email = '$email', "
 	. "username = '$username', " 
 	. "password = '$hashedPassword', "
 	. "salt = '$salt', "
@@ -24,14 +23,14 @@
 	. "exp1 = 0, "
 	. "exp2 = 0, "
 	. "exp3 = 0, "
-	. "exp4 = 0, " 
+	. "exp4 = 0" 
 	);
 	//connection as we have done
 
 	$_SESSION["name"] = $username;
 
 	if($query){
-		echo "true";
+		echo false;
 	}
 	else {
 		echo "<p>" . $_SESSION["connection"]->error . "</p>";

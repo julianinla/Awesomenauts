@@ -37,7 +37,7 @@ game.TitleScreen = me.ScreenObject.extend({
 		}));
 		//renderable starting new game
 
-		me.game.data.addChild(game.data.option1);
+		me.game.world.addChild(game.data.option1);
 		//allows for releasepointerevent of other child
 
 		game.data.option2 = new (me.Renderable.extend({
