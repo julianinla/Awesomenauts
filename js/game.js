@@ -6,8 +6,8 @@ var game = {
 	data : {
 		// score
 		score : 0,
-		option1: "",
-		option2: "",
+		option1: "", //empty var for pointer release
+		option2: "", //epmty var for pointer release
 		enemyBaseHealth: 10, //global var for enemy base health 
 		playerBaseHealth: 10, //global var for player base health 
 		enemyCreepHealth: 5, //global var for creep health
