@@ -44,7 +44,8 @@ var game = {
 		pausePos: "", 
 		buyscreen: "",
 		//2 new random vars
-		buytext: ""
+		buytext: "",
+		minimap: ""
 	},
 	
 	
@@ -105,8 +106,9 @@ var game = {
 		//GameManager for handling experience the player earns
 		me.pool.register("SpendGold", game.SpendGold);
 		//GameManager for handling buying stuff w/ gold
-		me.pool.register("spear", game.SpearThrow);
+		me.pool.register("spear", game.SpearThrow, true);
 		//adds spear entity into entity pool
+		me.pool.register("minimap", game.MiniMap, true);
 
 		me.state.set(me.state.MENU, new game.TitleScreen()); //gives info for menu state
 		me.state.set(me.state.PLAY, new game.PlayScreen()); //gives info for play state
