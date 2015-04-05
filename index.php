@@ -119,56 +119,56 @@
 					//sets username and password values from input fields to entered info
 					dataType: "text"
 				})
-					.success(function(response) {
-						if(response == false) {  //doesn't work if we test on the "true" string, so we're testing on boolean false
-							me.state.change(me.state.PLAY); //start game
-						} else {
-							alert(response);
-						}
-					})
-					//if successful
+				.success(function(response) {
+					if(response == false) {  //doesn't work if we test on the "true" string, so we're testing on boolean false
+						me.state.change(me.state.PLAY); //start game
+					} else {
+						alert(response);
+					}
+				})
+				//if successful
 					
-					.fail(function(response) {
-						alert("fail");
-					});
-					//if if fails say so
+				.fail(function(response) {
+					alert("fail");
 				});
-				//when you register ...
-				//
+				//if if fails say so
+			});
+			//when you register ...
+			//
 				
-				$("#load").bind("click", function(){
-					$.ajax({
-						type: "POST",
-						url: "php/controller/login-user.php",
-						data: {
-							username: $('#username').val(),
-							password: $('#password').val()
-						},
-						dataType: "text"
-					})
-					.success(function(response) {
-						if(response === "Invalid username and password" ) { 
-							alert(response);
-						}
-						else {
-							var data = jQuery.parseJSON(response);
-							game.data.exp = data["exp"];
-							game.data.exp1 = data["exp1"];
-							game.data.exp2 = data["exp2"];
-							game.data.exp3 = data["exp3"];
-							game.data.exp4 = data["exp4"];
-							me.state.change(me.state.SPENDEXP);
-						}
-						//gives values for the exp vars
-						//goes to spendexp screen
-					})
-					//if unsuccessful
-					.fail(function(response) {
-						alert("fail");
-					});
-					//if it fails say so
+			$("#load").bind("click", function(){
+				$.ajax({
+					type: "POST",
+					url: "php/controller/login-user.php",
+					data: {
+						username: $("#username").val(),
+						password: $("#password").val()
+					},
+					dataType: "text"
+				})
+				.success(function(response) {
+					if(response === "Invalid username and password" ) { 
+						alert(response);
+					}
+					else {
+						var data = jQuery.parseJSON(response);
+						game.data.exp = data["exp"];
+						game.data.exp1 = data["exp1"];
+						game.data.exp2 = data["exp2"];
+						game.data.exp3 = data["exp3"];
+						game.data.exp4 = data["exp4"];
+						me.state.change(me.state.SPENDEXP);
+					}
+					//gives values for the exp vars
+					//goes to spendexp screen
+				})
+				//if unsuccessful
+				.fail(function(response) {
+					alert("fail");
 				});
-				//when you register ...
+				//if it fails say so
+			});
+			//when you register ...
 
 
 		</script>

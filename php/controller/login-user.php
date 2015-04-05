@@ -2,13 +2,13 @@
 	require_once(__DIR__ . "/../model/config.php");
 	//need to config file
 
-	$array = array[ //(?
+	$array = array(
 		'exp'=> '',
 		'exp1'=> '',
 		'exp2'=> '',
 		'exp3'=> '',
 		'exp4'=> '',
-	];
+	);
 	//array that has all the exp
 
 	$username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
@@ -33,11 +33,9 @@
 			//set session name here
 
 			echo json_encode($array); //echoing the whole array as one statement
+		} else {
+			echo "Invalid username and password"; 
 		}
-		else {
-			echo "Invalid username and password"; //doesn't work if we test on the "true" string, so we're testing on boolean false
-		}
-	}
-	else {
-		echo "Invalid username and password"; //doesn't work if we test on the "true" string, so we're testing on boolean false
+	} else {
+		echo "Invalid username and password"; 
 	}
