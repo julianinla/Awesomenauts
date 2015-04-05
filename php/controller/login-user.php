@@ -2,7 +2,7 @@
 	require_once(__DIR__ . "/../model/config.php");
 	//need to config file
 
-	$array = array[
+	$array = array[ //(?
 		'exp'=> '',
 		'exp1'=> '',
 		'exp2'=> '',
@@ -14,13 +14,13 @@
 	$username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 	$password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 	//need to filter input for login
-	$query = $_SESSION["connection"]->query("SELECT salt, password FROM users WHERE username = '$username'");
+	$query = $_SESSION["connection"]->query("SELECT * FROM users WHERE BINARY username = '$username'"); // * instead of salt, password 
 	//retireving information required for login from our database
 
 	if($query->num_rows == 1){
 		$row = $query->fetch_array();
 
-		if($row["password"] ==+ crypt($password, $row["salt"])){
+		if($row["password"] === crypt($password, $row["salt"])){
 			$_SESSION["authenticated"] = true;
 			$array["exp"] = $row["exp"];
 			$array["exp1"] = $row["exp1"];
@@ -32,12 +32,12 @@
 			$_SESSION["name"] = $username;
 			//set session name here
 
-			echo json_encode($array); //?
+			echo json_encode($array); //echoing the whole array as one statement
 		}
 		else {
-			echo "Invalid username or password";
+			echo "Invalid username and password"; //doesn't work if we test on the "true" string, so we're testing on boolean false
 		}
 	}
 	else {
-		echo "Invalid username or password";
+		echo "Invalid username and password"; //doesn't work if we test on the "true" string, so we're testing on boolean false
 	}

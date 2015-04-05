@@ -15,8 +15,9 @@
 			. "exp3 int(4),"
 			. "exp4 int(4),"
 			. "DateTime datetime NOT NULL,"
-			. "PRIMARY KEY (id))" /* create primary key */);  
+			. "PRIMARY KEY (id))" ) ;  /* create primary key */
 	//used for creating table 
 	//stores created users
+
 
 ?>
