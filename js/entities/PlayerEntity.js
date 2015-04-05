@@ -161,13 +161,13 @@ game.PlayerEntity = me.Entity.extend({
 	checkAbilityKeys: function() {
 		if (me.input.isKeyPressed("skill1")) {
 			// this.speedBurst();
-		}
+		} //if you use skill 1
 		else if (me.input.isKeyPressed("skill2")) {
 			// this.eatCreep();
-		}
+		} // if you use skill 2
 		else if (me.input.isKeyPressed("skill3")) {
-			this.throwSpear();
-		}
+			this.throwSpear(); //goes to throwSpear function
+		} //if you use skill 3
 	},
 
 	throwSpear: function() {
@@ -175,10 +175,11 @@ game.PlayerEntity = me.Entity.extend({
 			this.lastSpear = this.now;
 			//resets time
 			var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
-			//pulls enemy creep class from pool
+			//pulls spear class from pool
 			me.game.world.addChild(spear, 10);
-			//inserts creep into actual game
+			//inserts spear into actual game
 		}
+		//if you wait between throws and have ability
 	},
 
 	setAnimation: function() {

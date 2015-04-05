@@ -7,3 +7,4 @@ game.SpearThrow = me.Entity.extend({
 		return true;
 	}
 });
+//basic entity for SpearThrow
