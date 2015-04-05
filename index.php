@@ -150,7 +150,7 @@
 						dataType: "text"
 					})
 					.success(function(response) {
-						if(response === "Invalid username and password") {
+						if(response === "Invalid username or password") {
 							alert(response);
 						}
 						else {
