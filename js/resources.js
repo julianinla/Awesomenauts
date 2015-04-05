@@ -16,6 +16,7 @@ game.resources = [
 	{name: "load-screen", type:"image", src: "data/img/loadpic.png"}, //resource that loads exp screen pic, but for continue
 	{name: "new-screen", type:"image", src: "data/img/newpic.png"}, // resource loads pic for new profile
 	{name: "spear", type:"image", src: "data/img/spear.png"}, //adds spear resourec
+	{name: "spear", type:"image", src: "data/img/minimap.png"},
 
 	/* Atlases 
 	 * @example
