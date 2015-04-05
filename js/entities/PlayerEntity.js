@@ -40,6 +40,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.lastHit = this.now;
 		//finds the date when your last hit player
 		this.lastAttack = new Date().getTime();
+		this.lastSpear = this.now;
 	},
 	//will store all of our timers
 
@@ -80,6 +81,8 @@ game.PlayerEntity = me.Entity.extend({
 
 		this.checkKeyPressesAndMove();
 		//function checks for movement 
+
+		this.checkAbilityKeys();
 
 		this.setAnimation();
 		//calls set animation rather than animation code in update
@@ -153,6 +156,29 @@ game.PlayerEntity = me.Entity.extend({
 		//sets precreated jumping var to true
 		this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		//causes jump to actually happen
+	},
+
+	checkAbilityKeys: function() {
+		if (me.input.isKeyPressed("skill1")) {
+			// this.speedBurst();
+		}
+		else if (me.input.isKeyPressed("skill2")) {
+			// this.eatCreep();
+		}
+		else if (me.input.isKeyPressed("skill3")) {
+			this.throwSpear();
+		}
+	},
+
+	throwSpear: function() {
+		if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >= 0) {
+			this.lastSpear = this.now;
+			//resets time
+			var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
+			//pulls enemy creep class from pool
+			me.game.world.addChild(spear, 10);
+			//inserts creep into actual game
+		}
 	},
 
 	setAnimation: function() {

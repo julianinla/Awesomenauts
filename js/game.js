@@ -21,7 +21,8 @@ var game = {
 		creepMoveSpeed: 5, //speed of creep
 		gloopMoveSpeed: 5, //speed of creep
 		gameTimerManager: "", //global var game manager
-		heroDeathManager: "", //global var death managerr
+		heroDeathManager: "", //global var death manager
+		spearTimer: 15,
 		player: "",
 		exp: 0, //experience var number
 		gold: 0, //number of gold player has
@@ -102,6 +103,7 @@ var game = {
 		//GameManager for handling experience the player earns
 		me.pool.register("SpendGold", game.SpendGold);
 		//GameManager for handling buying stuff w/ gold
+		me.pool.register("spear", game.SpearThrow);
 
 		me.state.set(me.state.MENU, new game.TitleScreen()); //gives info for menu state
 		me.state.set(me.state.PLAY, new game.PlayScreen()); //gives info for play state

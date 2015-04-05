@@ -25,3 +25,5 @@
 		$_SESSION["connection"] = $connection;
 		//assigning connection var to session var
 	}
+
+	?>
