@@ -46,6 +46,7 @@ var game = {
 		//2 new random vars
 		buytext: "",
 		minimap: "" //empty minimap global var
+		miniplayer: ""
 	},
 	
 	

@@ -50,7 +50,7 @@ game.MiniPlayerLocation = me.Entity.extend({
 
 	update: function() {
 		this.pos.x = (10 + (game.data.player.pos.x * 0.11)); //says what x value should be
-		this.pos.y = (10 + (game.data.player.pos.y * 0.1)); //says what y value should be
+		this.pos.y = (10 + (game.data.player.pos.y * 0.105)); //says what y value should be
 		return true;
 	}
 });
