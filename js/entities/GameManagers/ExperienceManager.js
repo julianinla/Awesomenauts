@@ -56,7 +56,7 @@ game.ExperienceManager = Object.extend({
 		})
 		.success(function(response) {
 			if(response === "true") {
-				me.state.change(me.state.PLAY);
+				me.state.change(me.state.MENU);
 				//start game
 			}
 			else {
