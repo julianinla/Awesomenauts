@@ -38,7 +38,7 @@ game.ExperienceManager = Object.extend({
 		
 		this.gameover = true;
 		//sets gameOver to true
-		me.save.exp = game.data.exp;
+		me.save.exp = Number(game.data.exp);
 		//saves your exp in melonjs
 
 		$.ajax({
