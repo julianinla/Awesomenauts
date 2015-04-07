@@ -24,12 +24,12 @@ game.MiniPlayerLocation = me.Entity.extend({
 
 		var my = this; //unused rn
 		this._super(me.Entity, "init", [x, y, {
-			width: 14, //makes width 14
-			height: 14,	//makes height 14
-			spritewidth: "14",	//same as width
-			spriteheight: "14", //same as height
+			width: my.diameter, //makes width 14
+			height: my.diameter,	//makes height 14
+			spritewidth: my.diameter,	//same as width
+			spriteheight: my.diameter, //same as height
 			getShape: function() {
-				return(new me.Rect(0, 0, 14, 14)).toPolygon();
+				return(new me.Rect(0, 0, my.diameter, my.diameter)).toPolygon();
 			}
 			//makes rectangle to appear in
 		}]);

@@ -161,6 +161,7 @@
 							game.data.exp3 = data["exp3"];
 							game.data.exp4 = data["exp4"];
 							me.state.change(me.state.SPENDEXP);
+							console.log(game.data.gold);
 						}
 						//gives values for the exp vars
 						//goes to spendexp screen
