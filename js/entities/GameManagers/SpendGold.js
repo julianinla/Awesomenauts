@@ -236,6 +236,7 @@ game.SpendGold = Object.extend({
 		else if (skill === 6) {
 			game.data.gold -= ((game.data.ability3 + 1) * 10); //takes gold away when purchase 
 			game.data.ability3 += 1; //increases level of ability3 
+			console.log(game.data.gold);
 		}
 		//purchase for skill6
 	} 
