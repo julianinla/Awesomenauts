@@ -1,5 +1,4 @@
 <?php 
-
 	require_once(__DIR__ . "/../model/config.php");
 	//link to our config
 
@@ -35,5 +34,3 @@
 	else {
 		echo "<p>" . $_SESSION["connection"]->error . "</p>";
 	}
-
-?>

@@ -59,7 +59,7 @@ game.SpearThrow = me.Entity.extend({
 
 	collideHandler: function(response) {
 		if(response.b.type === 'EnemyBase' || response.b.type === 'EnemyCreep') {
-			this.response.b.loseHealth(this.attack);
+			response.b.loseHealth(this.attack);
 			//collisions cause damage
 			me.game.world.removeChild(this);
 		} //if the spear hits enemy base or creep	
